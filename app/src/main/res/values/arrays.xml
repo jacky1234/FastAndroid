@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="keyValueStore">
+        <item>save-普通int</item>
+        <item>read-普通int</item>
+        <item>save-json</item>
+        <item>read-json</item>
+        <item>save-list</item>
+        <item>read-list</item>
+    </array>
+
+    <array name="eventDispatch">
+        <item>register-PwdChangeEvent,LoginEvent</item>
+        <item>dispatch-PwdChangeEvent</item>
+        <item>dispatch-LoginEvent</item>
+        <item>unRegister-PwdChangeEvent,LoginEvent</item>
+    </array>
+
+    <array name="inject">
+        <item>IOC(Inversion of Control)-GainInstance</item>
+        <item>登陆操作</item>
+        <item>释放操作</item>
+    </array>
+</resources>
