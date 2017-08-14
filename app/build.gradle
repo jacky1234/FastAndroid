@@ -1,4 +1,7 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.hujiang.android-aspectjx'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 25
@@ -11,9 +14,31 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
+    signingConfigs {
+        config {
+            keyAlias 'jackyang'
+            keyPassword '123123asd'
+            storeFile file(KEYSTORE_PATH)
+            storePassword '123123asd'
+        }
+    }
+
     buildTypes {
         release {
+            jniDebuggable false
+            minifyEnabled true
+            zipAlignEnabled true
+            shrinkResources true
+            signingConfig signingConfigs.config
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            jniDebuggable true
             minifyEnabled false
+            zipAlignEnabled false
+            shrinkResources false
+            signingConfig signingConfigs.config
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -28,8 +53,10 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
 
+    compile project(path: ':androidsupport')
+    compile project(path: ':android-aop')
     compile 'com.jackyjf.main.test:logView:1.6.0'
     compile 'com.facebook.stetho:stetho:1.2.0'
     compile 'com.jakewharton:butterknife:7.0.1'
-    compile project(path: ':androidsupport')
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }

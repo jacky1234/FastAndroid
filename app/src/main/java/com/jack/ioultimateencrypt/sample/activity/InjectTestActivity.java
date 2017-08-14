@@ -1,10 +1,12 @@
-package com.jack.ioultimateencrypt.sample;
+package com.jack.ioultimateencrypt.sample.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Spinner;
 
+import com.jack.ioultimateencrypt.sample.BaseActivity;
+import com.jack.ioultimateencrypt.sample.R;
 import com.jack.ioultimateencrypt.sample.service.Login;
 import com.jack.test.logger.Log;
 import com.jackyang.android.support.injection.Injections;
@@ -18,7 +20,7 @@ import com.jackyang.android.support.injection.Injections;
 
 public class InjectTestActivity extends BaseActivity {
 
-    private boolean init;
+
     private Login login;
 
     @Override
@@ -27,14 +29,10 @@ public class InjectTestActivity extends BaseActivity {
     }
 
     @Override
-    public void onWindowFocusChanged(boolean hasFocus) {
-        super.onWindowFocusChanged(hasFocus);
-        if (hasFocus && !init) {
-            init = true;
-            Log.d(TAG, "Injects is in Application#onCreate\n"
-                    + "实现了IOC控制反转，DI自动注入所需字段，只要在Injects中注册就可以。"
-            );
-        }
+    protected void description() {
+        Log.d(TAG, "Injects is in Application#onCreate\n"
+                + "实现了IOC控制反转，DI自动注入所需字段，只要在Injects中注册就可以。"
+        );
     }
 
     @Override
@@ -47,7 +45,7 @@ public class InjectTestActivity extends BaseActivity {
         switch (position) {
             case 0:
                 login = Injections.getBean(Login.class);
-                Log.d(TAG,"get login service");
+                Log.d(TAG, "get login service");
                 break;
             case 1:
                 login.login("jackyang", "123456");

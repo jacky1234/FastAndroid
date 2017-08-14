@@ -1,5 +1,7 @@
 package com.jack.ioultimateencrypt.sample.module;
 
+import com.jackyang.android.support.lang.BaseObject;
+
 /**
  * 2017/8/8.
  * github:[https://github.com/jacky1234]
@@ -7,7 +9,7 @@ package com.jack.ioultimateencrypt.sample.module;
  * @author jackyang
  */
 
-public class Person {
+public class Person extends BaseObject{
     private int age;
     private String name;
 

@@ -11,15 +11,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity"></activity>
-        <activity android:name=".KeyValueStoreTestActivity"></activity>
-        <activity android:name=".EventDispatchTestActivity"></activity>
-        <activity android:name=".InjectTestActivity">
+        <activity android:name=".activity.KeyValueStoreTestActivity"></activity>
+        <activity android:name=".activity.EventDispatchTestActivity"></activity>
+        <activity android:name=".activity.InjectTestActivity"></activity>
+        <activity android:name=".activity.AopTestActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activity.KotlinTestActivity"></activity>
     </application>
-
 </manifest>

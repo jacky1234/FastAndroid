@@ -1,4 +1,4 @@
-package com.jack.ioultimateencrypt.sample;
+package com.jack.ioultimateencrypt.sample.activity;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -7,6 +7,8 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Spinner;
 
+import com.jack.ioultimateencrypt.sample.BaseActivity;
+import com.jack.ioultimateencrypt.sample.R;
 import com.jack.ioultimateencrypt.sample.module.Person;
 import com.jack.test.logger.Log;
 import com.jackyang.android.support.repository.KeyValueStore;
@@ -32,6 +34,11 @@ public class KeyValueStoreTestActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         sharedPreferences = getSharedPreferences("blackboard_pref", Context.MODE_PRIVATE);
         keyValueStore = new SharedPreferenceKeyValueStore(sharedPreferences);
+    }
+
+    @Override
+    protected void description() {
+
     }
 
     @Override

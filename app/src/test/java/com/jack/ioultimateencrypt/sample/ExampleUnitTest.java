@@ -37,5 +37,7 @@ public class ExampleUnitTest {
         list = JsonUtils.fromJSON(json, List.class);
         Utils.P("deser:" + list.toString());
     }
+
+
 }
 

@@ -7,6 +7,11 @@
     <include layout="@layout/layout_header"></include>
 
     <FrameLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></FrameLayout>
+
+    <FrameLayout
         android:id="@id/framelog"
         android:layout_width="match_parent"
         android:layout_height="match_parent"></FrameLayout>

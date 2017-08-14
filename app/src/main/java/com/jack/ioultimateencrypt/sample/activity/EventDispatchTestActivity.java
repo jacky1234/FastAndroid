@@ -1,10 +1,12 @@
-package com.jack.ioultimateencrypt.sample;
+package com.jack.ioultimateencrypt.sample.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Spinner;
 
+import com.jack.ioultimateencrypt.sample.BaseActivity;
+import com.jack.ioultimateencrypt.sample.R;
 import com.jack.ioultimateencrypt.sample.events.LoginEvent;
 import com.jack.ioultimateencrypt.sample.events.PwdChangeEvent;
 import com.jack.test.logger.Log;
@@ -26,6 +28,11 @@ public class EventDispatchTestActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         eventDispatcher = Injections.getBean(EventDispatcher.class);
+    }
+
+    @Override
+    protected void description() {
+
     }
 
     @Override

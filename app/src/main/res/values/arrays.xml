@@ -21,4 +21,27 @@
         <item>登陆操作</item>
         <item>释放操作</item>
     </array>
+
+    <array name="popWindow">
+        <item>dismiss</item>
+        <item>showAtBottom</item>
+        <item>dropDown</item>
+        <item>showAtLocation-</item>
+    </array>
+
+    <array name="aop">
+        <item>asyn</item>
+        <item>Cacheable-save</item>
+        <item>Cacheable-get</item>
+        <item>DebugTrace</item>
+        <item>HookMethod</item>
+        <item>LogMethod</item>
+        <item>Prefs-save</item>
+        <item>Prefs-get</item>
+        <item>Safe</item>
+    </array>
+
+    <array name="kotlin">
+        <item>asyn</item>
+    </array>
 </resources>
