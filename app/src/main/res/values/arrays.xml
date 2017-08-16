@@ -44,4 +44,8 @@
     <array name="kotlin">
         <item>asyn</item>
     </array>
+
+    <array name="queue">
+        <item>create normal queue</item>
+    </array>
 </resources>

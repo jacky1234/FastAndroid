@@ -2,6 +2,8 @@ package com.jack.ioultimateencrypt.sample
 
 import com.jack.ioultimateencrypt.sample.module.School
 import org.junit.Test
+import java.text.SimpleDateFormat
+import java.util.*
 
 /**
  * 2017/8/14.
@@ -19,6 +21,7 @@ class KotlinDemoTest {
         Utils.P(school.history)
 
         school.name = "nantong university"
+        school.is211=false
         Utils.P(school.toString())
     }
 
@@ -50,4 +53,18 @@ class KotlinDemoTest {
         }
         println()
     }
+
+    fun Date.format (pattern: String = "yyyy-MM-dd"): String {
+        return SimpleDateFormat (pattern).format (this)
+    }
+
+    /**
+     * 更方便的扩展
+     */
+    @Test
+    fun extent_test(){
+        Utils.P(Date().format())
+    }
+
+
 }

@@ -92,6 +92,9 @@
     @com.jackyang.android.aop.annotation.Safe  *;
 }
 
+# ImmersionBar
+-keep class com.gyf.barlibrary.* {*;}
+
 #假设调用不产生任何影响，在proguard代码优化时会将该调用remove掉。如system.out.println和Log.v等等
 -assumenosideeffects class android.util.Log {
     public static *** d(...);

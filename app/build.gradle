@@ -53,10 +53,12 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
 
-    compile project(path: ':androidsupport')
-    compile project(path: ':android-aop')
+    compile project(path: ':fa-core')
+    compile project(path: ':fa-aop')
+    compile 'com.gyf.barlibrary:barlibrary:2.2.5'
     compile 'com.jackyjf.main.test:logView:1.6.0'
     compile 'com.facebook.stetho:stetho:1.2.0'
     compile 'com.jakewharton:butterknife:7.0.1'
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    compile 'com.cleveroad:slidingtutorial:1.0.8'
 }

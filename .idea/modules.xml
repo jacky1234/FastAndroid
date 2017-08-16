@@ -3,8 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/FastAndroid.iml" filepath="$PROJECT_DIR$/FastAndroid.iml" />
-      <module fileurl="file://$PROJECT_DIR$/androidsupport/androidsupport.iml" filepath="$PROJECT_DIR$/androidsupport/androidsupport.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fa-aop/fa-aop.iml" filepath="$PROJECT_DIR$/fa-aop/fa-aop.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fa-core/fa-core.iml" filepath="$PROJECT_DIR$/fa-core/fa-core.iml" />
     </modules>
   </component>
 </project>
