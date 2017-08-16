@@ -8,7 +8,9 @@ import android.widget.TextView;
 
 import com.jack.ioultimateencrypt.sample.BaseActivity;
 import com.jack.ioultimateencrypt.sample.R;
+import com.jack.ioultimateencrypt.sample.module.Task;
 import com.jack.test.logger.Log;
+import com.jackyang.android.aop.annotation.DebugTrace;
 import com.jackyang.android.support.queue.Operation;
 import com.jackyang.android.support.queue.OperationRunnable;
 import com.jackyang.android.support.queue.Queue;
@@ -35,7 +37,7 @@ public class QueueTestActivity extends BaseActivity implements Runnable {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         queue = new Queue("HelloWorld");
-        queue.start();
+
     }
 
     @Override
@@ -62,8 +64,43 @@ public class QueueTestActivity extends BaseActivity implements Runnable {
             case 0:
                 Log.d(TAG, "add operation ...");
                 new Thread(this).start();
+                taskDelay(1000);
+                break;
+            case 1:
+                for (int i = 0; i < 10; i++) {
+                    queue.addOperation(new MyOperation(new Task(i, "name:" + i, i * 500, i == 10 - 1)));
+                }
+                taskDelay(2000);
                 break;
         }
+    }
+
+    class MyOperation implements Operation {
+        private Task task;
+
+        public MyOperation(Task task) {
+            this.task = task;
+        }
+
+        @DebugTrace
+        @Override
+        public void run(Queue queue, Bundle bundle) {
+            OperationRunnable.sleep(task.getDuration());
+            Log.d(TAG, "running task done:" + task.toString());
+            if (task.isFinalMission()) {
+                Log.d(TAG, "task all done");
+            }
+        }
+    }
+
+    private void taskDelay(final int delay) {
+        Log.d(TAG, "消费线程将要在" + delay + "ms后启动");
+        OperationRunnable.runOnUiThreadAfterDelay(new Runnable() {
+            @Override
+            public void run() {
+                queue.start();
+            }
+        }, delay);
     }
 
     int count = 0;

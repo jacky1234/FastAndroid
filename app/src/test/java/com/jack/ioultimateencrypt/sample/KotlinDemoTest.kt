@@ -21,7 +21,7 @@ class KotlinDemoTest {
         Utils.P(school.history)
 
         school.name = "nantong university"
-        school.is211=false
+        school.is211 = false
         Utils.P(school.toString())
     }
 
@@ -54,17 +54,43 @@ class KotlinDemoTest {
         println()
     }
 
-    fun Date.format (pattern: String = "yyyy-MM-dd"): String {
-        return SimpleDateFormat (pattern).format (this)
+    fun Date.format(pattern: String = "yyyy-MM-dd"): String {
+        return SimpleDateFormat(pattern).format(this)
     }
 
     /**
      * 更方便的扩展
      */
     @Test
-    fun extent_test(){
+    fun extent_test() {
         Utils.P(Date().format())
     }
 
+    /**
+     *
+    what is this (the receiver)
+    what is it (the argument)
+    what is the result
+     */
+    @Test
+    fun let_test() {
+        val str: String = "_HelloWorld"
+        val result = str.let {
+            print(this) // Receiver
+            print(it) // Argument
+            10L // Block return value
+        }
+        println("\n" + result)
+    }
+
+    @Test
+    fun apply_test() {
+        ArrayList<String>().apply {
+            add("testApply")
+            add("testApply")
+            add("testApply")
+            println("this = " + this)
+        }.let { println(it) }
+    }
 
 }

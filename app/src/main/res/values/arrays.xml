@@ -47,5 +47,6 @@
 
     <array name="queue">
         <item>create normal queue</item>
+        <item>create 10task and run,循环队列示例</item>
     </array>
 </resources>

@@ -7,6 +7,5 @@ import android.os.Bundle;
  */
 
 public interface Operation {
-
     void run(Queue queue, Bundle bundle);
 }
