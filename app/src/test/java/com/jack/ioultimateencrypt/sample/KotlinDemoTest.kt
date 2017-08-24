@@ -93,4 +93,12 @@ class KotlinDemoTest {
         }.let { println(it) }
     }
 
+    @Test
+    fun argments_test() {
+        var s: String? = null
+        s?.length       //not wrong
+        s!!.length      //exception
+    }
+
+
 }

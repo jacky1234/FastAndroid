@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">AndroidSupportDemo</string>
+    <string name="permission_locate_rationale">FastAndroid定位请求以为你提供更好的服务</string>
+    <string name="button_allow">允许</string>
+    <string name="button_deny">不允许</string>
+    <string name="permission_locate_deny">定位权限被拒绝</string>
 </resources>

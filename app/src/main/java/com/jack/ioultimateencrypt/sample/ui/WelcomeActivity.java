@@ -1,4 +1,4 @@
-package com.jack.ioultimateencrypt.sample.activity;
+package com.jack.ioultimateencrypt.sample.ui;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.gyf.barlibrary.ImmersionBar;
 import com.jack.ioultimateencrypt.sample.R;
+import com.jack.ioultimateencrypt.sample.ui.fragment.WelcomeFragment;
 
 /**
  * 2017/8/15.

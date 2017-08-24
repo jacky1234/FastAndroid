@@ -36,6 +36,9 @@ dependencies {
     compile 'io.reactivex.rxjava2:rxjava:2.1.0'
     compile 'com.safframework.log:saf-log:1.0.9'
     compile 'com.safframework:saf-cache:1.0.1'
-    compile 'tony-common:tony-common-utils:1.1.0'
+    compile('tony-common:tony-common-utils:1.1.0') {
+        exclude group: 'com.alibaba', module: 'fastjson'
+    }
+
 
 }

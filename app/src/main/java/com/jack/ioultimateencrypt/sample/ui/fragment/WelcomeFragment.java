@@ -1,4 +1,4 @@
-package com.jack.ioultimateencrypt.sample.activity;
+package com.jack.ioultimateencrypt.sample.ui.fragment;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -14,7 +14,7 @@ import com.cleveroad.slidingtutorial.Renderer;
 import com.cleveroad.slidingtutorial.TutorialOptions;
 import com.cleveroad.slidingtutorial.TutorialPageProvider;
 import com.cleveroad.slidingtutorial.TutorialSupportFragment;
-import com.jack.ioultimateencrypt.sample.MainActivity;
+import com.jack.ioultimateencrypt.sample.ui.MainActivity;
 import com.jack.ioultimateencrypt.sample.R;
 import com.safframework.log.L;
 

@@ -13,6 +13,13 @@ public class Car extends BaseObject {
     private String brand;
     private String manufacturer;
 
+    public Car() {
+    }
+
+    public Car(String brand, String manufacturer) {
+        this.brand = brand;
+        this.manufacturer = manufacturer;
+    }
 
     public void setBrand(String brand) {
         this.brand = brand;

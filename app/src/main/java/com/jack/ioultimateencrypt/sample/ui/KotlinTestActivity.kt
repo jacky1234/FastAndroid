@@ -1,8 +1,8 @@
-package com.jack.ioultimateencrypt.sample.activity
+package com.jack.ioultimateencrypt.sample.ui
 
 import android.view.View
 import android.widget.Spinner
-import com.jack.ioultimateencrypt.sample.BaseActivity
+import com.jack.ioultimateencrypt.sample.base.BaseActivity
 import com.jack.ioultimateencrypt.sample.R
 import com.jack.test.logger.Log
 

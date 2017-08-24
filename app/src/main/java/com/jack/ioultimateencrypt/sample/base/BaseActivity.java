@@ -1,4 +1,4 @@
-package com.jack.ioultimateencrypt.sample;
+package com.jack.ioultimateencrypt.sample.base;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.Spinner;
 
+import com.jack.ioultimateencrypt.sample.R;
 import com.jack.test.logger.Log;
 import com.jack.test.logger.LogCatWrapper;
 import com.jack.test.logger.LogFragment;

@@ -1,4 +1,4 @@
-package com.jack.ioultimateencrypt.sample.activity;
+package com.jack.ioultimateencrypt.sample.ui.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

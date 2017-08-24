@@ -1,11 +1,11 @@
-package com.jack.ioultimateencrypt.sample.activity;
+package com.jack.ioultimateencrypt.sample.ui;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Spinner;
 
-import com.jack.ioultimateencrypt.sample.BaseActivity;
+import com.jack.ioultimateencrypt.sample.base.BaseActivity;
 import com.jack.ioultimateencrypt.sample.R;
 import com.jack.ioultimateencrypt.sample.events.LoginEvent;
 import com.jack.ioultimateencrypt.sample.events.PwdChangeEvent;
