@@ -1,5 +1,6 @@
 package com.jack.ioultimateencrypt.sample.ui.fragment
 
+import com.jack.ioultimateencrypt.sample.R
 import com.jack.ioultimateencrypt.sample.base.BaseFragment
 
 /**
@@ -8,13 +9,13 @@ import com.jack.ioultimateencrypt.sample.base.BaseFragment
  * @author  jackyang
  *
  */
-class FindFragment:BaseFragment(){
+class MovieFragment :BaseFragment(){
     override fun initView() {
 
     }
 
     override fun getLayoutResources(): Int {
-        return 0;
+        return R.layout.fragment_movie
     }
 
 }

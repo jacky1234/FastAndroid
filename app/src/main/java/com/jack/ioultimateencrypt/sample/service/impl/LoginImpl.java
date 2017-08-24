@@ -3,7 +3,7 @@ package com.jack.ioultimateencrypt.sample.service.impl;
 import com.jack.ioultimateencrypt.sample.service.Login;
 import com.jack.ioultimateencrypt.sample.service.NetWork;
 import com.jack.test.logger.Log;
-import com.jackyang.android.support.exception.SpicaAndroidException;
+import com.jackyang.android.support.exception.FAndroidException;
 import com.jackyang.android.support.injection.Autowired;
 import com.jackyang.android.support.lang.Disposable;
 import com.jackyang.android.support.lang.Initializable;
@@ -29,7 +29,7 @@ public class LoginImpl implements Login, Initializable, Disposable, Runnable {
     @Override
     public void login(String name, String pwd) {
         if (netWork == null) {
-            throw new SpicaAndroidException("netWork service is null,have you register it in Injects");
+            throw new FAndroidException("netWork service is null,have you register it in Injects");
         }
         this.name = name;
         this.pwd = pwd;

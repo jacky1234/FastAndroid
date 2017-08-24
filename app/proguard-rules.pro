@@ -101,6 +101,10 @@
     public static *** v(...);
 }
 
+# AndroidUtilCode
+-keep class com.blankj.utilcode.** { *; }
+-keepclassmembers class com.blankj.utilcode.** { *; }
+-dontwarn com.blankj.utilcode.**
 
 #apk 包内所有 class 的内部结构
 -dump class_files.txt

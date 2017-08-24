@@ -7,8 +7,8 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Spinner;
 
-import com.jack.ioultimateencrypt.sample.base.BaseActivity;
 import com.jack.ioultimateencrypt.sample.R;
+import com.jack.ioultimateencrypt.sample.base.BaseActivity;
 import com.jack.ioultimateencrypt.sample.module.Person;
 import com.jack.test.logger.Log;
 import com.jackyang.android.support.repository.KeyValueStore;
@@ -57,7 +57,7 @@ public class KeyValueStoreTestActivity extends BaseActivity {
                 Log.d(TAG, "store int :" + 100);
                 break;
             case 1:
-                final Integer integer = keyValueStore.get("int", Integer.class).getValue();
+                final Integer integer = keyValueStore.get("int", Integer.class);
                 Log.d(TAG, "read int :" + integer);
                 break;
             case 2:
@@ -68,7 +68,7 @@ public class KeyValueStoreTestActivity extends BaseActivity {
                 Log.d(TAG, "save json:" + person.toString());
                 break;
             case 3:
-                Log.d(TAG, "read json:" + keyValueStore.get("person", Person.class).getValue().toString());
+                Log.d(TAG, "read json:" + keyValueStore.get("person", Person.class).toString());
                 break;
             case 4:
                 list = new ArrayList<>();
@@ -82,7 +82,7 @@ public class KeyValueStoreTestActivity extends BaseActivity {
                 Log.d(TAG, "save list:" + list.toString());
                 break;
             case 5:
-                list = keyValueStore.get("list", List.class).getValue();
+                list = keyValueStore.getList("list", Person.class);
                 Log.d(TAG, "read list:" + list.toString());
                 break;
         }

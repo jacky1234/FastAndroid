@@ -9,14 +9,14 @@ import com.baidu.location.BDAbstractLocationListener
 import com.baidu.location.BDLocation
 import com.baidu.location.LocationClient
 import com.baidu.location.LocationClientOption
-import com.jack.ioultimateencrypt.sample.Constant
 import com.jack.ioultimateencrypt.sample.R
 import com.jack.ioultimateencrypt.sample.mvp.contract.MainCostract
 import com.jack.ioultimateencrypt.sample.mvp.model.bean.Location
 import com.jack.ioultimateencrypt.sample.mvp.present.MainPresent
 import com.jack.ioultimateencrypt.sample.showToast
 import com.jack.ioultimateencrypt.sample.ui.fragment.CatalogFragment
-import com.jack.ioultimateencrypt.sample.ui.fragment.FindFragment
+import com.jack.ioultimateencrypt.sample.ui.fragment.MovieFragment
+import com.jack.ioultimateencrypt.sample.utils.SpUtils
 import com.jackyang.android.support.injection.Injections
 import com.jackyang.android.support.repository.KeyValueStore
 import com.safframework.log.L
@@ -24,14 +24,23 @@ import permissions.dispatcher.*
 
 @RuntimePermissions
 class MainActivity : AppCompatActivity(), MainCostract.View {
-    lateinit var mCatalogFragment: CatalogFragment
-    lateinit var mFindFragment: FindFragment
+    private lateinit var mCatalogFragment: CatalogFragment
+    private lateinit var mMovieFragment: MovieFragment
     lateinit var mPresent: MainCostract.Present
-    var mLocationClient: LocationClient? = null
+    private var mLocationClient: LocationClient? = null
     lateinit var mkeyValueStore: KeyValueStore
 
     override fun onResponseCities(lists: List<Location.City>) {
-        mkeyValueStore!!.set(Constant.STORE_KEY.CITIES, lists)
+        val location = SpUtils.instance!!.getBDLocation()
+
+        //计算匹配的city
+        var city: Location.City? = lists.firstOrNull { it.n!!.contains(location) || location.contains(it.n!!) }
+
+        if (city == null) {
+            city = lists[0]
+        }
+
+        SpUtils.instance!!.saveMyCity(city)
     }
 
     override fun onDestroy() {
@@ -57,7 +66,7 @@ class MainActivity : AppCompatActivity(), MainCostract.View {
     private val locationListener: BDAbstractLocationListener = object : BDAbstractLocationListener() {
         override fun onReceiveLocation(location: BDLocation) {
             L.json(location)
-            mkeyValueStore.set(Constant.STORE_KEY.MYLOCATION, location.address.city)
+            SpUtils.getInstance(applicationContext).saveBDLocation(location.address.city)
             mPresent.queryCities()      //查询地址
 
         }
@@ -163,8 +172,8 @@ class MainActivity : AppCompatActivity(), MainCostract.View {
                     mCatalogFragment = item
                 }
 
-                if (item is FindFragment) {
-                    mFindFragment = item
+                if (item is MovieFragment) {
+                    mMovieFragment = item
                 }
             }
         } else {

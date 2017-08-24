@@ -43,7 +43,8 @@ public class KeyValueTest {
 
     @Test
     public void read() {
-        final Integer intkey = keyValueStore.get("intkey", Integer.class).getValue();
+//        final Integer intkey = keyValueStore.get("intkey", Integer.class);
+        final Integer intkey = keyValueStore.getInteger("intkey");
         Utils.P(intkey);
     }
 }

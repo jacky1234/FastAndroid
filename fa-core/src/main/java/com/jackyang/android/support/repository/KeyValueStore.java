@@ -1,12 +1,27 @@
 package com.jackyang.android.support.repository;
 
+import java.util.List;
+
 /**
  * KeyValueStore, 存储key-value健值对
  * <p/>
  * Created by jackyang on 4/10/15.
  */
 public interface KeyValueStore {
+    /**
+     * 清楚缓存
+     */
+    void clear();
 
+    /**
+     * 根据键名获取KeyValue
+     *
+     * @param key
+     * @param targetType
+     * @param <T>
+     * @return not null
+     */
+    <T> List<T> getList(String key, Class<T> targetType);
 
     /**
      * 根据键名获取KeyValue
@@ -15,7 +30,7 @@ public interface KeyValueStore {
      * @param targetType 类型
      * @return KeyValue
      */
-    <T> KeyValue<T> get(String key, Class<T> targetType);
+    <T> T get(String key, Class<T> targetType);
 
 
     /**

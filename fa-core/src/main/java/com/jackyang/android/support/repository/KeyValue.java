@@ -1,11 +1,19 @@
 package com.jackyang.android.support.repository;
 
+import java.util.List;
+
 /**
  * 健值对
  *
  * @param <T>
  */
 public interface KeyValue<T> {
+
+    /**
+     * 获取list值
+     * @return
+     */
+    List<T> getValues();
 
     /**
      * @return 获取键名

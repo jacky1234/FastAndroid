@@ -8,7 +8,7 @@ import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.telephony.TelephonyManager;
 
-import com.jackyang.android.support.exception.SpicaAndroidException;
+import com.jackyang.android.support.exception.FAndroidException;
 import com.jackyang.android.support.function.Closure;
 import com.jackyang.android.support.function.Supplier;
 import com.jackyang.android.support.lang.Disposable;
@@ -131,7 +131,7 @@ public class Injections {
                 T target = supplier.supply();
                 registerBean(interfaceType, target);
             } catch (Exception ex) {
-                throw new SpicaAndroidException("创建对象失败:" + ex.getMessage(), ex);
+                throw new FAndroidException("创建对象失败:" + ex.getMessage(), ex);
             }
             return this;
         }
@@ -161,7 +161,7 @@ public class Injections {
             try {
                 closure.execute(getBean(type));
             } catch (Exception ex) {
-                throw new SpicaAndroidException(ex.getMessage(), ex);
+                throw new FAndroidException(ex.getMessage(), ex);
             }
             return this;
         }

@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.support.multidex.MultiDex;
 
+import com.blankj.utilcode.util.Utils;
 import com.facebook.stetho.Stetho;
 import com.jack.ioultimateencrypt.sample.service.Login;
 import com.jack.ioultimateencrypt.sample.service.NetWork;
@@ -14,7 +15,6 @@ import com.jackyang.android.support.event.impl.DefaultEventDispatcher;
 import com.jackyang.android.support.injection.Injections;
 import com.jackyang.android.support.repository.KeyValueStore;
 import com.jackyang.android.support.repository.support.prefs.SharedPreferenceKeyValueStore;
-import com.jackyang.android.support.utils.Utils;
 
 /**
  * 2017/8/7.

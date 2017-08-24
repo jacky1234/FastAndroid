@@ -42,7 +42,7 @@ public class JsonUtils {
      * @return List<T>
      * @notice 用于转换纯数组JSON格式到Bean中, 在3.0的项目中基本不会使用到
      */
-    public static <T> List<T> getListFromJSON(Class<T> t, String json) {
+    public static <T> List<T> getListFromJSON(String json, Class<T> t) {
         Gson gson = new Gson();
         List<T> lists = new ArrayList<>();
         try {
@@ -67,7 +67,7 @@ public class JsonUtils {
      * @author shaowei.ma
      * @date 2014年9月24日
      */
-    public static <T> List<T> getListFromJSON(ParameterizedType t, String json) {
+    public static <T> List<T> getListFromJSON(String json, ParameterizedType t) {
         Gson gson = new Gson();
         return gson.fromJson(json, t);
     }

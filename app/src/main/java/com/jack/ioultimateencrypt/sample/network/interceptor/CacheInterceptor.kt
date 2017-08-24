@@ -2,7 +2,7 @@ package com.jack.ioultimateencrypt.sample.network.interceptor
 
 import android.content.Context
 import android.util.Log
-import com.jackyang.android.support.utils.NetworkUtils
+import com.blankj.utilcode.util.NetworkUtils
 import okhttp3.CacheControl
 import okhttp3.Interceptor
 import okhttp3.Response

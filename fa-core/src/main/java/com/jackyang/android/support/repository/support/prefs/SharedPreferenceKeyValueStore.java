@@ -2,12 +2,11 @@ package com.jackyang.android.support.repository.support.prefs;
 
 import android.content.SharedPreferences;
 
-import com.jackyang.android.support.repository.KeyValue;
 import com.jackyang.android.support.repository.KeyValueStore;
 import com.jackyang.android.support.repository.support.KeyValueImpl;
 import com.jackyang.android.support.utils.JsonUtils;
 
-import org.apache.commons.lang3.StringUtils;
+import java.util.List;
 
 
 /**
@@ -27,34 +26,45 @@ public class SharedPreferenceKeyValueStore implements KeyValueStore {
     }
 
     @Override
-    public <T> KeyValue<T> get(String key, Class<T> targetType) {
-        String value = delegate.getString(key, StringUtils.EMPTY);
-        return new KeyValueImpl<T>(key, JsonUtils.fromJSON(value, targetType));
+    public void clear() {
+        this.delegate.edit().clear().commit();
+    }
+
+    @Override
+    public <T> List<T> getList(String key, Class<T> targetType) {
+        String value = delegate.getString(key, null);
+        return new KeyValueImpl<T>(key, JsonUtils.getListFromJSON(value, targetType)).getValues();
+    }
+
+    @Override
+    public <T> T get(String key, Class<T> targetType) {
+        String value = delegate.getString(key, null);
+        return new KeyValueImpl<T>(key, JsonUtils.fromJSON(value, targetType)).getValue();
     }
 
     @Override
     public String getString(String key) {
-        return get(key, String.class).getValue();
+        return get(key, String.class);
     }
 
     @Override
     public Long getLong(String key) {
-        return get(key, Long.class).getValue();
+        return get(key, Long.class);
     }
 
     @Override
     public Integer getInteger(String key) {
-        return get(key, Integer.class).getValue();
+        return get(key, Integer.class);
     }
 
     @Override
     public Double getDouble(String key) {
-        return get(key, Double.class).getValue();
+        return get(key, Double.class);
     }
 
     @Override
     public Float getFloat(String key) {
-        return get(key, Float.class).getValue();
+        return get(key, Float.class);
     }
 
     @Override

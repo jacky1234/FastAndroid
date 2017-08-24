@@ -16,6 +16,9 @@ interface MainCostract {
     }
 
     interface View : BaseView<Present> {
+        @Throws(Exception::class)
         fun onResponseCities(lists: List<Location.City>)
     }
+
+
 }
