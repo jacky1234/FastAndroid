@@ -10,7 +10,7 @@ import com.jack.ioultimateencrypt.sample.mvp.model.bean.Location
  * @author  jackyang
  *
  */
-interface MainCostract {
+interface MainConstract {
     interface Present : BasePresenter {
         fun queryCities()
     }

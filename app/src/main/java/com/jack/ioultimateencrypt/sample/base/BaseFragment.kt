@@ -13,9 +13,8 @@ import android.view.ViewGroup
  *
  */
 abstract class BaseFragment : Fragment() {
-    var isFirst: Boolean = false
+    var isFirst: Boolean = true
     var rootView: View? = null
-    var isFragmentVisiable: Boolean = false
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         if (rootView == null) {
             rootView = inflater?.inflate(getLayoutResources(), container, false)
@@ -30,25 +29,19 @@ abstract class BaseFragment : Fragment() {
 
     override fun setUserVisibleHint(isVisibleToUser: Boolean) {
         super.setUserVisibleHint(isVisibleToUser)
-        if (isVisibleToUser) {
-            isFragmentVisiable = true
-        }
+
         if (rootView == null) {
-            return;
-        }
-        //可见，并且没有加载过
-        if (!isFirst && isFragmentVisiable) {
-            onFragmentVisiableChange(true)
             return
         }
-        //由可见——>不可见 已经加载过
-        if (isFragmentVisiable) {
-            onFragmentVisiableChange(false)
-            isFragmentVisiable = false
+        //可见，并且没有加载过
+        if (isFirst && isVisibleToUser) {
+            isFirst = false
+            onLazyLoad()
+            return
         }
     }
 
-    open protected fun onFragmentVisiableChange(b: Boolean) {
+    open protected fun onLazyLoad() {
 
     }
 

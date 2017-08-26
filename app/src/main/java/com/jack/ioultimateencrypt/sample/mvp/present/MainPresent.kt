@@ -2,7 +2,7 @@ package com.jack.ioultimateencrypt.sample.mvp.present
 
 import android.content.Context
 import com.jack.ioultimateencrypt.sample.applySchedulers
-import com.jack.ioultimateencrypt.sample.mvp.contract.MainCostract
+import com.jack.ioultimateencrypt.sample.mvp.contract.MainConstract
 import com.jack.ioultimateencrypt.sample.mvp.model.bean.Location
 import com.jack.ioultimateencrypt.sample.network.RetrofitClient
 import com.jack.ioultimateencrypt.sample.network.api.MTimeApi
@@ -20,7 +20,7 @@ import io.reactivex.disposables.Disposable
  * @author  jackyang
  *
  */
-class MainPresent(context: Context, view: MainCostract.View) : MainCostract.Present {
+class MainPresent(context: Context, view: MainConstract.View) : MainConstract.Present {
 
     override fun queryCities() {
         var value = SpUtils.instance!!.getCities()
@@ -59,7 +59,7 @@ class MainPresent(context: Context, view: MainCostract.View) : MainCostract.Pres
     }
 
     var mContext: Context? = null
-    var mView: MainCostract.View? = null
+    var mView: MainConstract.View? = null
     private var mkeyValueStore: KeyValueStore? = null
 
     init {

@@ -10,12 +10,12 @@ import com.baidu.location.BDLocation
 import com.baidu.location.LocationClient
 import com.baidu.location.LocationClientOption
 import com.jack.ioultimateencrypt.sample.R
-import com.jack.ioultimateencrypt.sample.mvp.contract.MainCostract
+import com.jack.ioultimateencrypt.sample.mvp.contract.MainConstract
 import com.jack.ioultimateencrypt.sample.mvp.model.bean.Location
 import com.jack.ioultimateencrypt.sample.mvp.present.MainPresent
 import com.jack.ioultimateencrypt.sample.showToast
 import com.jack.ioultimateencrypt.sample.ui.fragment.CatalogFragment
-import com.jack.ioultimateencrypt.sample.ui.fragment.MovieFragment
+import com.jack.ioultimateencrypt.sample.ui.fragment.movie.MovieFragment
 import com.jack.ioultimateencrypt.sample.utils.SpUtils
 import com.jackyang.android.support.injection.Injections
 import com.jackyang.android.support.repository.KeyValueStore
@@ -23,10 +23,10 @@ import com.safframework.log.L
 import permissions.dispatcher.*
 
 @RuntimePermissions
-class MainActivity : AppCompatActivity(), MainCostract.View {
+class MainActivity : AppCompatActivity(), MainConstract.View {
     private lateinit var mCatalogFragment: CatalogFragment
     private lateinit var mMovieFragment: MovieFragment
-    lateinit var mPresent: MainCostract.Present
+    lateinit var mPresent: MainConstract.Present
     private var mLocationClient: LocationClient? = null
     lateinit var mkeyValueStore: KeyValueStore
 
@@ -41,6 +41,7 @@ class MainActivity : AppCompatActivity(), MainCostract.View {
         }
 
         SpUtils.instance!!.saveMyCity(city)
+        
     }
 
     override fun onDestroy() {
