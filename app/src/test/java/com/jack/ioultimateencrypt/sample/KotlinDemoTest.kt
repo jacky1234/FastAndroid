@@ -100,5 +100,13 @@ class KotlinDemoTest {
         s!!.length      //exception
     }
 
+    @Test
+    fun three_test() {
+        var s: String? = null
+        println(s?.length ?: 0)
 
+        s = "hello"
+        println(s?.length ?: 0)
+
+    }
 }

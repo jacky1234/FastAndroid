@@ -22,5 +22,5 @@ interface MTimeApi {
     fun queryCities(): Observable<Location>
 
     @GET("https://api-m.mtime.cn/Movie/MovieComingNew.api")
-    fun queryUpcomingMovies(@Query("locationId") cityId: String): Observable<UpcomingMovieBean>
+    fun queryUpcomingMovies(@Query("locationId") cityId: Int): Observable<UpcomingMovieBean>
 }

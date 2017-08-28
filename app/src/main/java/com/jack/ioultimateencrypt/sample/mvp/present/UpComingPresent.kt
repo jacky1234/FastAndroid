@@ -12,7 +12,7 @@ import com.jack.ioultimateencrypt.sample.mvp.model.UpcomingMovieModule
  *
  */
 class UpComingPresent(context: Context, view: UpComingContract.View) : UpComingContract.Present {
-    override fun queryUpComingMovies(cityId: String) {
+    override fun queryUpComingMovies(cityId: Int) {
         mModule.queryUpComingMovies(mContext, cityId)
                 .applySchedulers()
                 .subscribe { bean ->
@@ -20,9 +20,9 @@ class UpComingPresent(context: Context, view: UpComingContract.View) : UpComingC
                 }
     }
 
-    lateinit var mContext: Context
-    lateinit var mView: UpComingContract.View
-    val mModule by lazy { UpcomingMovieModule() }
+    var mContext: Context
+    var mView: UpComingContract.View
+    private val mModule by lazy { UpcomingMovieModule() }
 
     init {
         mContext = context

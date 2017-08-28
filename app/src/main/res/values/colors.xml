@@ -5,8 +5,10 @@
     <color name="colorAccent">#FF4081</color>
     <color name="white">#FFFFFF</color>
     <color name="gray">#848383</color>
+    <color name="light_gray">#CCCCCC</color>
     <color name="black">#000000</color>
     <color name="divider">#e6e6e6</color>
     <color name="transparent">#0000</color>
     <color name="textbg">#8F9AA8</color>
+    <color name="emphasize_black">#2B2B2B</color>
 </resources>

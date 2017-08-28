@@ -13,6 +13,8 @@ import com.jack.ioultimateencrypt.sample.R
 import com.jack.ioultimateencrypt.sample.mvp.contract.MainConstract
 import com.jack.ioultimateencrypt.sample.mvp.model.bean.Location
 import com.jack.ioultimateencrypt.sample.mvp.present.MainPresent
+import com.jack.ioultimateencrypt.sample.rx.rxbus.EventConstant
+import com.jack.ioultimateencrypt.sample.rx.rxbus.RxBusManager
 import com.jack.ioultimateencrypt.sample.showToast
 import com.jack.ioultimateencrypt.sample.ui.fragment.CatalogFragment
 import com.jack.ioultimateencrypt.sample.ui.fragment.movie.MovieFragment
@@ -41,15 +43,12 @@ class MainActivity : AppCompatActivity(), MainConstract.View {
         }
 
         SpUtils.instance!!.saveMyCity(city)
-        
+        RxBusManager.post(EventConstant.ON_BDLOCATION_SUCCESS, city)
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        stopBDLocate()
-    }
 
-    private fun stopBDLocate() {
         mLocationClient?.stop()
         mLocationClient?.unRegisterLocationListener(locationListener)
     }
@@ -140,7 +139,6 @@ class MainActivity : AppCompatActivity(), MainConstract.View {
         }
 
         mLocationClient!!.registerLocationListener(locationListener)
-
         mLocationClient!!.start()
     }
 
@@ -179,11 +177,18 @@ class MainActivity : AppCompatActivity(), MainConstract.View {
             }
         } else {
             mCatalogFragment = CatalogFragment()
+            mMovieFragment = MovieFragment()
 
             val transaction = supportFragmentManager.beginTransaction()
-            transaction.add(R.id.frameLayout, mCatalogFragment).commit()
+            transaction
+                    .add(R.id.frameLayout, mCatalogFragment)
+                    .add(R.id.frameLayout, mMovieFragment)
+                    .commit()
         }
 
-        supportFragmentManager.beginTransaction().show(mCatalogFragment).commit()
+        supportFragmentManager.beginTransaction()
+                .hide(mCatalogFragment)
+                .show(mMovieFragment)
+                .commit()
     }
 }

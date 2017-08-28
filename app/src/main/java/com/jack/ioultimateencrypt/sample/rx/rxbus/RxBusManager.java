@@ -40,7 +40,7 @@ public class RxBusManager {
     }
 
 
-    public static void post(@NonNull String eventKey,
+    public static void post(@NonNull Integer eventKey,
                             @NonNull Object content) {
         gBus.post(eventKey, content);
     }

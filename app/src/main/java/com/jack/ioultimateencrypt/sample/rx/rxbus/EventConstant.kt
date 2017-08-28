@@ -7,6 +7,6 @@ package com.jack.ioultimateencrypt.sample.rx.rxbus
 
 interface EventConstant {
     companion object {
-
+        val ON_BDLOCATION_SUCCESS = 0x110
     }
 }

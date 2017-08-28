@@ -20,4 +20,26 @@
         <item name="android:clickable">true</item>
     </style>
 
+
+    <style name="data_title">
+        <item name="android:paddingLeft">8dp</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/gray</item>
+        <item name="android:background">@color/light_gray</item>
+    </style>
+
+    <style name="emphasize">
+        <item name="android:color">@color/emphasize_black</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+    <style name="weaken">
+        <item name="android:color">@color/light_gray</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+
 </resources>

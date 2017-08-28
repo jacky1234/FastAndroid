@@ -13,7 +13,7 @@ import io.reactivex.Observable
  *
  */
 class UpcomingMovieModule {
-    fun queryUpComingMovies(mContext: Context, cityId: String): Observable<UpcomingMovieBean> {
+    fun queryUpComingMovies(mContext: Context, cityId: Int): Observable<UpcomingMovieBean> {
         val mTimeApi = RetrofitClient.getInstance(mContext!!, MTimeApi.BASE_URL).create(MTimeApi::class.java)
         return mTimeApi!!.queryUpcomingMovies(cityId)
     }
