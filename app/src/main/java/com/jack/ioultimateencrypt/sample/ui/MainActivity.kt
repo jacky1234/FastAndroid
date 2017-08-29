@@ -2,6 +2,7 @@ package com.jack.ioultimateencrypt.sample.ui
 
 import android.Manifest
 import android.os.Bundle
+import android.os.Handler
 import android.support.annotation.NonNull
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
@@ -31,6 +32,7 @@ class MainActivity : AppCompatActivity(), MainConstract.View {
     lateinit var mPresent: MainConstract.Present
     private var mLocationClient: LocationClient? = null
     lateinit var mkeyValueStore: KeyValueStore
+    private var bExit = false
 
     override fun onResponseCities(lists: List<Location.City>) {
         val location = SpUtils.instance!!.getBDLocation()
@@ -190,5 +192,15 @@ class MainActivity : AppCompatActivity(), MainConstract.View {
                 .hide(mCatalogFragment)
                 .show(mMovieFragment)
                 .commit()
+    }
+
+    override fun onBackPressed() {
+        if (!bExit) {
+            bExit = true
+            showToast(resources.getString(R.string.exit_notify))
+            Handler().postDelayed({ bExit = false }, 200)
+        } else {
+            super.onBackPressed()
+        }
     }
 }

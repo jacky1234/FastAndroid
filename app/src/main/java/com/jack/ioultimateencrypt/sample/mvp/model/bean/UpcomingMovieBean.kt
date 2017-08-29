@@ -1,7 +1,5 @@
 package com.jack.ioultimateencrypt.sample.mvp.model.bean
 
-import com.chad.library.adapter.base.entity.SectionEntity
-
 /**
  * 2017/8/25.
  * github:[https://github.com/jacky1234]
@@ -75,7 +73,7 @@ class UpcomingMovieBean {
     }
 
 
-    class MoviecomingsBean(isHeader: Boolean, header: String?)  {
+    class MoviecomingsBean()  {
         /**
          * actor1 : 张俪
          * actor2 : 锦荣

@@ -15,6 +15,7 @@ import android.view.View;
  *         说明：
  *         目前只考虑了支持 LinearLayoutManager 的情况
  *         如果想要挤压效果，需要是 TitleView 单独为一个ViewType。
+ *         参考： http://www.jianshu.com/p/5864db231ed5
  */
 
 public abstract class ItemHeaderDecoration extends RecyclerView.ItemDecoration {

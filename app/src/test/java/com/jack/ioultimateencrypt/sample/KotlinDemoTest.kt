@@ -1,9 +1,11 @@
 package com.jack.ioultimateencrypt.sample
 
 import com.jack.ioultimateencrypt.sample.module.School
+import com.jack.ioultimateencrypt.sample.mvp.model.bean.UpcomingMovieBean
 import org.junit.Test
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 /**
  * 2017/8/14.
@@ -106,7 +108,11 @@ class KotlinDemoTest {
         println(s?.length ?: 0)
 
         s = "hello"
-        println(s?.length ?: 0)
+        println(s?.length == 5 ?: false)
 
+        var bean: UpcomingMovieBean.MoviecomingsBean? = UpcomingMovieBean.MoviecomingsBean()
+        bean?.videos = ArrayList()
+        (bean?.videos as ArrayList<UpcomingMovieBean.MoviecomingsBean.VideosBeanX>).add(UpcomingMovieBean.MoviecomingsBean.VideosBeanX())
+        println(bean?.videos?.isEmpty() ?: true)
     }
 }

@@ -1,6 +1,8 @@
 package com.jack.ioultimateencrypt.sample.ui.adapter
 
+import android.support.v4.content.ContextCompat
 import android.widget.ImageView
+import com.blankj.utilcode.util.SpanUtils
 import com.bumptech.glide.Glide
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
@@ -18,8 +20,12 @@ class UpcomingMovieAdapter(layout: Int, data: MutableList<UpcomingMovieBean.Movi
     override fun convert(holder: BaseViewHolder?, item: UpcomingMovieBean.MoviecomingsBean?) {
         holder?.setText(R.id.date_tv, String.format("%d月%d日", item?.rMonth, item?.rDay))
                 ?.setText(R.id.tv_movie_name, item?.title)
-                ?.setText(R.id.tv_want_see, String.format("%d人想看-%s", item?.wantedCount ?: 0, item?.type))
+                ?.setText(R.id.tv_want_see, SpanUtils()
+                        .append(String.format("%d", item?.wantedCount ?: 0)).setForegroundColor(ContextCompat.getColor(mContext, R.color.origin))
+                        .append(String.format("人想看-%s", item?.type)).setForegroundColor(ContextCompat.getColor(mContext, R.color.gray))
+                        .create())
                 ?.setText(R.id.tv_actor, String.format("%s/%s", item?.actor1, item?.actor2))
+                ?.setVisible(R.id.iv_play, !item?.videos?.isEmpty()!!)
 
         holder?.getView<ImageView>(R.id.iv_cover).let {
             Glide.with(mContext).load(item?.image).placeholder(R.drawable.welcome).into(it)

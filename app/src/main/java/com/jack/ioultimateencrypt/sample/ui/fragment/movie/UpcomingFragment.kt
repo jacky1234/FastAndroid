@@ -1,6 +1,8 @@
 package com.jack.ioultimateencrypt.sample.ui.fragment.movie
 
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.TextView
 import com.chad.library.adapter.base.BaseQuickAdapter
@@ -46,8 +48,6 @@ class UpcomingFragment : BaseFragment(), UpComingContract.View {
         mAdapter.setNotDoAnimationCount(3)
         mAdapter.setOnItemClickListener { adapter, view, position ->
             //            TODO("请求详情")
-//            val item = mAdapter.getItem(position)
-//            item?.id
         }
 
         recyclerView.addItemDecoration(object : ItemHeaderDecoration() {
@@ -68,12 +68,24 @@ class UpcomingFragment : BaseFragment(), UpComingContract.View {
             }
         })
 
-
         RxBusManager.register(this, EventConstant.ON_BDLOCATION_SUCCESS, Location.City::class.java)
                 .subscribe { city ->
                     mCityId = city.id
                     mPresent.queryUpComingMovies(mCityId!!)
                 }
+
+        initHeader()
+    }
+
+    private fun initHeader() {
+        val header = LayoutInflater.from(context).inflate(R.layout.item_header_upcoming, null)
+//        mAdapter.addHeaderView(header)
+
+        var rvCatalog = header.findViewById(R.id.rvCatalog) as RecyclerView
+        var rvDetail = header.findViewById(R.id.rvDetail) as RecyclerView
+
+        rvCatalog.layoutManager = LinearLayoutManager(context,RecyclerView.HORIZONTAL,false)
+//        rvCatalog.adapter =
     }
 
 }

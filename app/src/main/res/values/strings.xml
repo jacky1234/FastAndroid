@@ -4,4 +4,5 @@
     <string name="button_allow">允许</string>
     <string name="button_deny">不允许</string>
     <string name="permission_locate_deny">定位权限被拒绝</string>
+    <string name="exit_notify">再按一次退出!</string>
 </resources>

@@ -11,4 +11,5 @@
     <color name="transparent">#0000</color>
     <color name="textbg">#8F9AA8</color>
     <color name="emphasize_black">#2B2B2B</color>
+    <color name="origin">#FF7F24</color>
 </resources>
