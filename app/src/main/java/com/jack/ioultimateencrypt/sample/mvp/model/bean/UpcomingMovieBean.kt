@@ -75,7 +75,7 @@ class UpcomingMovieBean {
     }
 
 
-    class MoviecomingsBean(isHeader: Boolean, header: String?) : SectionEntity<String>(isHeader, header) {
+    class MoviecomingsBean(isHeader: Boolean, header: String?)  {
         /**
          * actor1 : 张俪
          * actor2 : 锦荣

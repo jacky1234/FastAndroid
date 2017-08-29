@@ -37,7 +37,7 @@
 
     <style name="weaken">
         <item name="android:color">@color/light_gray</item>
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">12sp</item>
         <item name="android:singleLine">true</item>
     </style>
 
