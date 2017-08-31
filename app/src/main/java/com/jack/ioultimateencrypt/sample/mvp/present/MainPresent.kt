@@ -23,7 +23,7 @@ import io.reactivex.disposables.Disposable
 class MainPresent(context: Context, view: MainConstract.View) : MainConstract.Present {
 
     override fun queryCities() {
-        var value = SpUtils.instance!!.getCities()
+        var value = SpUtils.getInstance(mContext).getCities()
         if (value == null || (value != null && value.isEmpty())) {
             val mTimeApi = RetrofitClient.getInstance(mContext!!, MTimeApi.BASE_URL).create(MTimeApi::class.java)
             mTimeApi!!.queryCities()
@@ -58,13 +58,8 @@ class MainPresent(context: Context, view: MainConstract.View) : MainConstract.Pr
         }
     }
 
-    var mContext: Context? = null
-    var mView: MainConstract.View? = null
-    private var mkeyValueStore: KeyValueStore? = null
+    private var mContext: Context = context
+    var mView: MainConstract.View = view
+    private var mkeyValueStore: KeyValueStore = Injections.getBean(KeyValueStore::class.java)
 
-    init {
-        this.mContext = context
-        this.mView = view
-        this.mkeyValueStore = Injections.getBean(KeyValueStore::class.java)
-    }
 }

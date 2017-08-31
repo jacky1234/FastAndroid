@@ -4,8 +4,13 @@
     <dimen name="indicator_spacing">2dp</dimen>
 
     <dimen name="margin_default">8dp</dimen>
+    <dimen name="margin_larger">12dp</dimen>
     <dimen name="pattern_margin">4dp</dimen>
+    <dimen name="default_padding">5dp</dimen>
+    <dimen name="padding_left">8dp</dimen>
+    <dimen name="padding_right">8dp</dimen>
     <dimen name="default_size">12sp</dimen>
+    <dimen name="default_corner">4dp</dimen>
     <dimen name="larger_size">14sp</dimen>
     <dimen name="divider_line">0.5dp</dimen>
 </resources>

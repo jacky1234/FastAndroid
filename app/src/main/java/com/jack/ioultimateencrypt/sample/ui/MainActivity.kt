@@ -35,10 +35,12 @@ class MainActivity : AppCompatActivity(), MainConstract.View {
     private var bExit = false
 
     override fun onResponseCities(lists: List<Location.City>) {
+        var city: Location.City? = null
         val location = SpUtils.instance!!.getBDLocation()
-
-        //计算匹配的city
-        var city: Location.City? = lists.firstOrNull { it.n!!.contains(location) || location.contains(it.n!!) }
+        if (location != null) {
+            //计算匹配的city
+            city = lists.firstOrNull { it?.n!!.contains(location!!) || location?.contains(it.n!!) }
+        }
 
         if (city == null) {
             city = lists[0]
@@ -68,9 +70,13 @@ class MainActivity : AppCompatActivity(), MainConstract.View {
     private val locationListener: BDAbstractLocationListener = object : BDAbstractLocationListener() {
         override fun onReceiveLocation(location: BDLocation) {
             L.json(location)
-            SpUtils.getInstance(applicationContext).saveBDLocation(location.address.city)
-            mPresent.queryCities()      //查询地址
+            if (location.address.city != null) {
+                SpUtils.getInstance(applicationContext).saveBDLocation(location.address.city)
+            } else {
+                showToast(location.locTypeDescription)
+            }
 
+            mPresent.queryCities()      //查询地址
         }
 
         /**

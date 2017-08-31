@@ -43,7 +43,7 @@ class RetrofitClient private constructor(context: Context, baseUrl: String) {
         //okhttp创建了
         okHttpClient = OkHttpClient.Builder()
                 .addNetworkInterceptor(
-                        HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+                        HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.HEADERS))
                 .cache(cache)
                 .addInterceptor(CacheInterceptor(context))
                 .addNetworkInterceptor(CacheInterceptor(context))

@@ -17,29 +17,30 @@ import com.jack.ioultimateencrypt.sample.mvp.model.bean.UpcomingMovieBean
  */
 class UpcomingMovieAdapter(layout: Int, data: MutableList<UpcomingMovieBean.MoviecomingsBean>?) : BaseQuickAdapter<UpcomingMovieBean.MoviecomingsBean, BaseViewHolder>(layout, data) {
 
-    override fun convert(holder: BaseViewHolder?, item: UpcomingMovieBean.MoviecomingsBean?) {
-        holder?.setText(R.id.date_tv, String.format("%d月%d日", item?.rMonth, item?.rDay))
-                ?.setText(R.id.tv_movie_name, item?.title)
-                ?.setText(R.id.tv_want_see, SpanUtils()
-                        .append(String.format("%d", item?.wantedCount ?: 0)).setForegroundColor(ContextCompat.getColor(mContext, R.color.origin))
-                        .append(String.format("人想看-%s", item?.type)).setForegroundColor(ContextCompat.getColor(mContext, R.color.gray))
+    override fun convert(holder: BaseViewHolder, item: UpcomingMovieBean.MoviecomingsBean) {
+        holder.setText(R.id.date_tv, String.format("%d月%d日", item.rMonth, item.rDay))
+                .setText(R.id.tv_movie_name, item.title)
+                .setText(R.id.tv_want_see, SpanUtils()
+                        .append(String.format("%d", item.wantedCount)).setForegroundColor(ContextCompat.getColor(mContext, R.color.orange))
+                        .append(String.format("人想看", item.type)).setForegroundColor(ContextCompat.getColor(mContext, R.color.gray))
+                        .append(if (item.type == null) "" else String.format("%s", item.type)).setForegroundColor(ContextCompat.getColor(mContext, R.color.gray))
                         .create())
-                ?.setText(R.id.tv_actor, String.format("%s/%s", item?.actor1, item?.actor2))
-                ?.setVisible(R.id.iv_play, !item?.videos?.isEmpty()!!)
+                .setText(R.id.tv_actor, String.format("%s/%s", item.actor1, item.actor2))
+                .setVisible(R.id.iv_play, !item.videos?.isEmpty()!!)
 
-        holder?.getView<ImageView>(R.id.iv_cover).let {
-            Glide.with(mContext).load(item?.image).placeholder(R.drawable.welcome).into(it)
+        holder.getView<ImageView>(R.id.iv_cover).let {
+            Glide.with(mContext).load(item.image).placeholder(R.drawable.welcome).into(it)
         }
 
-        val prePos = holder?.layoutPosition!! - 1
+        val prePos = holder.layoutPosition!! - headerLayoutCount - 1 //减去头部layout子view的count
         if (prePos >= 0) {
-            if (item?.rDay != getItem(prePos)?.rDay || item?.rMonth != getItem(prePos)?.rMonth) {
-                holder?.setVisible(R.id.date_tv, true)
+            if (item.rDay != getItem(prePos)?.rDay || item.rMonth != getItem(prePos)?.rMonth) {
+                holder.setVisible(R.id.date_tv, true)
             } else {
-                holder?.setVisible(R.id.date_tv, false)
+                holder.setVisible(R.id.date_tv, false)
             }
         } else {
-            holder?.setVisible(R.id.date_tv, true)
+            holder.setVisible(R.id.date_tv, true)
         }
 
     }

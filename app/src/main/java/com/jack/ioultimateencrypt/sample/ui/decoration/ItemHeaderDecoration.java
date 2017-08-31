@@ -28,6 +28,8 @@ public abstract class ItemHeaderDecoration extends RecyclerView.ItemDecoration {
 
     public abstract void setDataOnView(int curPos, View view);
 
+    public abstract int getHeadCount();
+
     @Override
     public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
         super.getItemOffsets(outRect, view, parent, state);
@@ -43,13 +45,13 @@ public abstract class ItemHeaderDecoration extends RecyclerView.ItemDecoration {
         if (parent.getLayoutManager() instanceof LinearLayoutManager) {
             final LinearLayoutManager layoutManager = (LinearLayoutManager) parent.getLayoutManager();
             int pos = layoutManager.findFirstVisibleItemPosition();
-            if (pos == RecyclerView.NO_POSITION) {
+            if (pos == RecyclerView.NO_POSITION || pos < getHeadCount()) {
                 return;
             }
             View child = parent.findViewHolderForLayoutPosition(pos).itemView;
 
             if (mDecorView == null) {
-                for (int i = 0; i < layoutManager.getChildCount(); i++) {
+                for (int i = getHeadCount(); i < layoutManager.getChildCount() + getHeadCount(); i++) {
                     mDecorView = parent.findViewHolderForLayoutPosition(i).itemView.findViewById(getDecorationLayoutId());
                     if (mDecorView != null) {
                         mDecorHeight = mDecorView.getHeight();
@@ -70,7 +72,7 @@ public abstract class ItemHeaderDecoration extends RecyclerView.ItemDecoration {
 //                c.translate(0, parent.findViewHolderForLayoutPosition(pos + 1).itemView.getTop() - mDecorHeight);
 //            }
 
-            setDataOnView(pos, mDecorView);
+            setDataOnView(pos - getHeadCount(), mDecorView);
 
             mDecorView.layout(parent.getLeft(), parent.getTop(), parent.getLeft() + mDecorView.getWidth(), parent.getTop() + mDecorView.getHeight());
             mDecorView.draw(c);

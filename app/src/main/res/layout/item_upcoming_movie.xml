@@ -30,6 +30,7 @@
                 android:id="@+id/iv_cover"
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
+                android:scaleType="centerCrop"
                 app:heightRadio="3"
                 app:widthRadio="2"/>
 

@@ -28,6 +28,12 @@
         <item name="android:textColor">@color/gray</item>
         <item name="android:background">@color/light_gray</item>
     </style>
+    
+    <style name="normal_text">
+        <item name="android:singleLine">true</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/gray</item>
+    </style>
 
     <style name="emphasize">
         <item name="android:color">@color/emphasize_black</item>

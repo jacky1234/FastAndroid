@@ -7,7 +7,8 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvCatalog"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_larger">
     </android.support.v7.widget.RecyclerView>
 
     <android.support.v7.widget.RecyclerView

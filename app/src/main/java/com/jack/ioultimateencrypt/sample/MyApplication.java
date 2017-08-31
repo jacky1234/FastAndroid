@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.support.multidex.MultiDex;
 
+import com.blankj.utilcode.util.CrashUtils;
 import com.blankj.utilcode.util.Utils;
 import com.facebook.stetho.Stetho;
 import com.jack.ioultimateencrypt.sample.service.Login;
@@ -15,6 +16,8 @@ import com.jackyang.android.support.event.impl.DefaultEventDispatcher;
 import com.jackyang.android.support.injection.Injections;
 import com.jackyang.android.support.repository.KeyValueStore;
 import com.jackyang.android.support.repository.support.prefs.SharedPreferenceKeyValueStore;
+
+import java.io.File;
 
 /**
  * 2017/8/7.
@@ -37,6 +40,7 @@ public class MyApplication extends Application {
         super.onCreate();
         gContext = this;
         Utils.init(this);
+        CrashUtils.init(new File(getExternalCacheDir(), "crash"));
         Stetho.initializeWithDefaults(this);
 
 

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/margin_default"
+    android:layout_marginRight="@dimen/margin_default"
+    android:orientation="vertical"
+    app:cardCornerRadius="@dimen/default_corner"
+    app:cardElevation="3dp">
+
+    <CheckBox
+        android:id="@+id/checkbox"
+        style="@style/normal_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/selector_cata_bg"
+        android:button="@null"
+        android:paddingBottom="@dimen/default_padding"
+        android:paddingLeft="@dimen/padding_left"
+        android:paddingRight="@dimen/padding_right"
+        android:paddingTop="@dimen/default_padding"
+        android:textColor="@color/selector_cata_color"
+        tools:checked="true"
+        tools:text="最受欢迎"/>
+
+</android.support.v7.widget.CardView>

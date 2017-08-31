@@ -15,29 +15,29 @@ import com.jackyang.android.support.repository.KeyValueStore
  */
 class SpUtils private constructor(context: Context) {
     val mContext: Context = context
-    lateinit var mkeyValueStore: KeyValueStore
+    val mkeyValueStore: KeyValueStore = Injections.getBean(KeyValueStore::class.java)
 
-    fun saveBDLocation(bdLocation: String) {
+    fun saveBDLocation(bdLocation: String?) {
         mkeyValueStore.set(StoreKey.BD_LOCATION, bdLocation)
     }
 
-    fun getBDLocation(): String {
+    fun getBDLocation(): String? {
         return mkeyValueStore.getString(StoreKey.BD_LOCATION)
     }
 
-    fun saveMyCity(city: Location.City) {
+    fun saveMyCity(city: Location.City?) {
         mkeyValueStore.set(StoreKey.MY_CITY, city)
     }
 
-    fun getMyCity(): Location.City {
+    fun getMyCity(): Location.City? {
         return mkeyValueStore.get(StoreKey.MY_CITY, Location.City::class.java)
     }
 
-    fun saveCities(lists: List<Location.City>) {
+    fun saveCities(lists: List<Location.City>?) {
         mkeyValueStore.set(StoreKey.ALL_CITIES, lists)
     }
 
-    fun getCities(): List<Location.City> {
+    fun getCities(): List<Location.City>? {
         return mkeyValueStore.getList(StoreKey.ALL_CITIES, Location.City::class.java)
     }
 
@@ -46,7 +46,6 @@ class SpUtils private constructor(context: Context) {
     }
 
     init {
-        mkeyValueStore = Injections.getBean(KeyValueStore::class.java)
         try {
             mkeyValueStore!!
         } catch (e: Exception) {
@@ -66,7 +65,6 @@ class SpUtils private constructor(context: Context) {
                     }
                 }
             }
-
             return instance!!
         }
 

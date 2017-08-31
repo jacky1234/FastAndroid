@@ -4,6 +4,7 @@ import android.content.Context
 import com.jack.ioultimateencrypt.sample.applySchedulers
 import com.jack.ioultimateencrypt.sample.mvp.contract.UpComingContract
 import com.jack.ioultimateencrypt.sample.mvp.model.UpcomingMovieModule
+import com.jack.ioultimateencrypt.sample.showToast
 
 /**
  * 2017/8/25.
@@ -15,17 +16,15 @@ class UpComingPresent(context: Context, view: UpComingContract.View) : UpComingC
     override fun queryUpComingMovies(cityId: Int) {
         mModule.queryUpComingMovies(mContext, cityId)
                 .applySchedulers()
-                .subscribe { bean ->
+                .subscribe({ bean ->
                     mView.onResponseMovies(bean)
-                }
+                }, { t ->
+                    mContext.showToast(t.toString())
+                })
     }
 
-    var mContext: Context
-    var mView: UpComingContract.View
+    var mContext: Context = context
+    var mView: UpComingContract.View = view
     private val mModule by lazy { UpcomingMovieModule() }
 
-    init {
-        mContext = context
-        mView = view
-    }
 }
