@@ -5,8 +5,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="@dimen/margin_default"
-    android:layout_marginRight="@dimen/margin_default"
     android:orientation="vertical"
     app:cardCornerRadius="@dimen/default_corner"
     app:cardElevation="3dp">

@@ -6,4 +6,4 @@ package com.jack.ioultimateencrypt.sample.mvp.model.bean
  * @author  jackyang
  *
  */
-data class MovieCataBean(val desc: String, val rMonth: Int?, var bChecked: Boolean = false)
+data class MovieCataBean(val desc: String, val rMonth: Int?, var bChecked: Boolean = false, var id: Int)

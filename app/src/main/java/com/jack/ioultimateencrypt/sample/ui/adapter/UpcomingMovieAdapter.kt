@@ -27,10 +27,16 @@ class UpcomingMovieAdapter(layout: Int, data: MutableList<UpcomingMovieBean.Movi
                         .create())
                 .setText(R.id.tv_actor, String.format("%s/%s", item.actor1, item.actor2))
                 .setVisible(R.id.iv_play, !item.videos?.isEmpty()!!)
+                .getView<ImageView>(R.id.iv_cover)
+                .let {
+                    Glide.with(mContext).load(item.image)
+                            .centerCrop()
+                            .placeholder(R.drawable.welcome)
+                            .dontAnimate()
+                            .into(it)
+//                    Picasso.with(mContext).load(item?.image).placeholder(R.drawable.welcome).into(it)
+                }
 
-        holder.getView<ImageView>(R.id.iv_cover).let {
-            Glide.with(mContext).load(item.image).placeholder(R.drawable.welcome).into(it)
-        }
 
         val prePos = holder.layoutPosition!! - headerLayoutCount - 1 //减去头部layout子view的count
         if (prePos >= 0) {

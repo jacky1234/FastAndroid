@@ -12,9 +12,8 @@ import android.view.View;
  *
  * @author jackyang
  *         <p>
- *         说明：
+ *         说明：实现了title挤压效果
  *         目前只考虑了支持 LinearLayoutManager 的情况
- *         如果想要挤压效果，需要是 TitleView 单独为一个ViewType。
  *         参考： http://www.jianshu.com/p/5864db231ed5
  */
 
@@ -29,6 +28,9 @@ public abstract class ItemHeaderDecoration extends RecyclerView.ItemDecoration {
     public abstract void setDataOnView(int curPos, View view);
 
     public abstract int getHeadCount();
+
+    //当前RecyclerView中的数据总数
+    public abstract int getTotalCount();
 
     @Override
     public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
@@ -48,10 +50,10 @@ public abstract class ItemHeaderDecoration extends RecyclerView.ItemDecoration {
             if (pos == RecyclerView.NO_POSITION || pos < getHeadCount()) {
                 return;
             }
-            View child = parent.findViewHolderForLayoutPosition(pos).itemView;
 
+            final int childCount = layoutManager.getChildCount();
             if (mDecorView == null) {
-                for (int i = getHeadCount(); i < layoutManager.getChildCount() + getHeadCount(); i++) {
+                for (int i = getHeadCount(); i < childCount + getHeadCount(); i++) {
                     mDecorView = parent.findViewHolderForLayoutPosition(i).itemView.findViewById(getDecorationLayoutId());
                     if (mDecorView != null) {
                         mDecorHeight = mDecorView.getHeight();
@@ -64,13 +66,16 @@ public abstract class ItemHeaderDecoration extends RecyclerView.ItemDecoration {
                 }
             }
 
-
             boolean flag = false;
-//            if (pos + 1 < layoutManager.getChildCount() && isStickHeaderChange(pos, pos + 1)) {
-//                c.save();
-//                flag = true;
-//                c.translate(0, parent.findViewHolderForLayoutPosition(pos + 1).itemView.getTop() - mDecorHeight);
-//            }
+            if (pos + 1 < getHeadCount() + getTotalCount() && isStickHeaderChange(pos - getHeadCount(), pos - getHeadCount() + 1)) {
+                final int top = parent.findViewHolderForLayoutPosition(pos + 1).itemView.getTop();
+                if (top > 0 && top < mDecorHeight) {
+                    c.save();
+                    flag = true;
+
+                    c.translate(0, top - mDecorHeight);
+                }
+            }
 
             setDataOnView(pos - getHeadCount(), mDecorView);
 

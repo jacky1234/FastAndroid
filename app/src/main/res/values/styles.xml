@@ -28,7 +28,7 @@
         <item name="android:textColor">@color/gray</item>
         <item name="android:background">@color/light_gray</item>
     </style>
-    
+
     <style name="normal_text">
         <item name="android:singleLine">true</item>
         <item name="android:textSize">12sp</item>
@@ -41,9 +41,22 @@
         <item name="android:singleLine">true</item>
     </style>
 
+    <style name="black_theme_small">
+        <item name="android:color">@color/emphasize_black</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
     <style name="weaken">
         <item name="android:color">@color/light_gray</item>
         <item name="android:textSize">12sp</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+    <style name="weaken_larger">
+        <item name="android:color">@color/light_gray</item>
+        <item name="android:textSize">14sp</item>
         <item name="android:singleLine">true</item>
     </style>
 

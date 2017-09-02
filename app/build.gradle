@@ -89,6 +89,7 @@ dependencies {
     kapt "com.github.hotchemi:permissionsdispatcher-processor:2.4.0"
     compile 'com.blankj:utilcode:1.8.3'
     compile 'com.github.bumptech.glide:glide:3.7.0'
+//    compile 'com.squareup.picasso:picasso:2.5.2'
 
     compile 'com.jakewharton:butterknife:7.0.1'
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"

@@ -18,8 +18,10 @@ import com.jack.ioultimateencrypt.sample.mvp.present.UpComingPresent
 import com.jack.ioultimateencrypt.sample.rx.rxbus.EventConstant
 import com.jack.ioultimateencrypt.sample.rx.rxbus.RxBusManager
 import com.jack.ioultimateencrypt.sample.ui.adapter.MovieCataAdapter
+import com.jack.ioultimateencrypt.sample.ui.adapter.MovieDetailAdapter
 import com.jack.ioultimateencrypt.sample.ui.adapter.UpcomingMovieAdapter
 import com.jack.ioultimateencrypt.sample.ui.decoration.ItemHeaderDecoration
+import com.jack.ioultimateencrypt.sample.ui.decoration.SimpleDividerDecoration
 import com.jack.ioultimateencrypt.sample.utils.SpUtils
 import kotlinx.android.synthetic.main.fragment_catelog.*
 import java.util.*
@@ -59,24 +61,30 @@ class UpcomingFragment : BaseFragment(), UpComingContract.View, SwipeRefreshLayo
         cataLists.clear()
         //获取月数
         val month = Calendar.getInstance().get(Calendar.MONTH) + 1
-        cataLists.add(MovieCataBean("最受欢迎", null, true))
-        cataLists.add(MovieCataBean(String.format("%d月大片", month + 1), month + 1, false))
-        cataLists.add(MovieCataBean(String.format("%d月大片", month + 2), month + 2, false))
+        cataLists.add(MovieCataBean("最受欢迎", null, true, 0))
+        cataLists.add(MovieCataBean(String.format("%d月大片", month + 1), month + 1, false, 1))
+        cataLists.add(MovieCataBean(String.format("%d月大片", month + 2), month + 2, false, 2))
+
+        //
+        detailLists.addAll(bean?.attention!!)
 
         mAdapter.notifyDataSetChanged()
         mMovieCataAdapter.notifyDataSetChanged()
+        mMovieDetailAdapter.notifyDataSetChanged()
     }
 
     override fun getLayoutResources(): Int {
         return R.layout.fragment_upcoming
     }
 
-    lateinit var mPresent: UpComingContract.Present
+    private lateinit var mPresent: UpComingContract.Present
     private var mCityId: Int? = null        //caution: 包装类型
     private val mUpcomingMovies = ArrayList<UpcomingMovieBean.MoviecomingsBean>()
     private lateinit var mAdapter: UpcomingMovieAdapter
     private lateinit var mMovieCataAdapter: MovieCataAdapter
+    private lateinit var mMovieDetailAdapter: MovieDetailAdapter
     private val cataLists = ArrayList<MovieCataBean>()
+    private val detailLists = ArrayList<UpcomingMovieBean.AttentionBean>()
     override fun initView() {
         mPresent = UpComingPresent(context, this)
 
@@ -90,6 +98,10 @@ class UpcomingFragment : BaseFragment(), UpComingContract.View, SwipeRefreshLayo
         }
 
         recyclerView.addItemDecoration(object : ItemHeaderDecoration() {
+            override fun getTotalCount(): Int {
+                return mAdapter.data.size
+            }
+
             override fun getHeadCount(): Int {
                 return mAdapter.headerLayoutCount
             }
@@ -141,7 +153,7 @@ class UpcomingFragment : BaseFragment(), UpComingContract.View, SwipeRefreshLayo
         rvCatalog.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
         mMovieCataAdapter = MovieCataAdapter(R.layout.item_movie_catalog, cataLists)
         rvCatalog.adapter = mMovieCataAdapter
-        //checkbox的影响
+        rvCatalog.addItemDecoration(SimpleDividerDecoration(context, Color.TRANSPARENT, 12, RecyclerView.HORIZONTAL))
         mMovieCataAdapter.setOnItemChildClickListener { adapter, _, position ->
 
             cataLists.forEachIndexed { index, any ->
@@ -151,7 +163,10 @@ class UpcomingFragment : BaseFragment(), UpComingContract.View, SwipeRefreshLayo
             adapter.notifyDataSetChanged()
         }
 
-
+        //detail
+        rvDetail.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
+        mMovieDetailAdapter = MovieDetailAdapter(R.layout.item_movie_detail, detailLists)
+        rvDetail.adapter = mMovieDetailAdapter
+        rvDetail.addItemDecoration(SimpleDividerDecoration(context, Color.TRANSPARENT, 12, RecyclerView.HORIZONTAL))
     }
-
 }

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="100dp"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_date"
+        style="@style/weaken"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+
+    <com.jack.ioultimateencrypt.sample.ui.widget.CenterScaleImageView
+        android:id="@+id/iv_cover"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/pattern_margin"
+        android:scaleType="centerCrop"
+        app:heightRadio="3"
+        app:widthRadio="2"/>
+
+    <TextView
+        android:id="@+id/tv_movie_name"
+        style="@style/black_theme_small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_default"/>
+
+
+    <TextView
+        android:id="@+id/tv_want_see"
+        style="@style/weaken_larger"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/pattern_margin"/>
+</LinearLayout>
