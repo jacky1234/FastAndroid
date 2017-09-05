@@ -12,4 +12,6 @@
     <color name="textbg">#8F9AA8</color>
     <color name="emphasize_black">#2B2B2B</color>
     <color name="orange">#FF7F24</color>
+    <color name="green">#00FF00</color>
+    <color name="dark_green">#71C671</color>
 </resources>

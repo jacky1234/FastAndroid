@@ -9,6 +9,9 @@ Rxjava2，Retrofit，以及BaseRecyclerViewAdapterHelper等框架。
 - 队列,基于HandlerThread
 - Rxbus,Rxjava2方式
 
+## 遗留问题
+1. 加载图片
+glide 第一次加载图片有些显示不全，滑动到最低下再反过来就能看到完成的图片，但是picasso加载不会有这个问题，为什么呢？
 
 
 ### proguard-rules

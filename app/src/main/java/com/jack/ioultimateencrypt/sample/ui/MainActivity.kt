@@ -3,7 +3,9 @@ package com.jack.ioultimateencrypt.sample.ui
 import android.Manifest
 import android.os.Bundle
 import android.os.Handler
+import android.support.annotation.IntRange
 import android.support.annotation.NonNull
+import android.support.v4.app.Fragment
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import com.baidu.location.BDAbstractLocationListener
@@ -23,6 +25,7 @@ import com.jack.ioultimateencrypt.sample.utils.SpUtils
 import com.jackyang.android.support.injection.Injections
 import com.jackyang.android.support.repository.KeyValueStore
 import com.safframework.log.L
+import kotlinx.android.synthetic.main.activity_main.*
 import permissions.dispatcher.*
 
 @RuntimePermissions
@@ -33,13 +36,14 @@ class MainActivity : AppCompatActivity(), MainConstract.View {
     private var mLocationClient: LocationClient? = null
     lateinit var mkeyValueStore: KeyValueStore
     private var bExit = false
+    private val mFragments = ArrayList<Fragment>()
 
     override fun onResponseCities(lists: List<Location.City>) {
         var city: Location.City? = null
         val location = SpUtils.instance!!.getBDLocation()
         if (location != null) {
             //计算匹配的city
-            city = lists.firstOrNull { it?.n!!.contains(location!!) || location?.contains(it.n!!) }
+            city = lists.firstOrNull { it.n!!.contains(location) || location.contains(it.n!!) }
         }
 
         if (city == null) {
@@ -65,6 +69,14 @@ class MainActivity : AppCompatActivity(), MainConstract.View {
         mPresent = MainPresent(this, this)
         mkeyValueStore = Injections.getBean(KeyValueStore::class.java)
         MainActivityPermissionsDispatcher.startBDLocateWithCheck(this)
+
+        menu_group.setOnCheckedChangeListener { _, checkedId ->
+            when (checkedId) {
+                R.id.tab_main -> switchToFragment(0)
+                R.id.tab_test -> switchToFragment(1)
+            }
+        }
+        menu_group.check(R.id.tab_main)
     }
 
     private val locationListener: BDAbstractLocationListener = object : BDAbstractLocationListener() {
@@ -183,21 +195,34 @@ class MainActivity : AppCompatActivity(), MainConstract.View {
                     mMovieFragment = item
                 }
             }
+
         } else {
             mCatalogFragment = CatalogFragment()
             mMovieFragment = MovieFragment()
 
             val transaction = supportFragmentManager.beginTransaction()
             transaction
-                    .add(R.id.frameLayout, mCatalogFragment)
                     .add(R.id.frameLayout, mMovieFragment)
+                    .add(R.id.frameLayout, mCatalogFragment)
+                    .hide(mMovieFragment)
+                    .hide(mCatalogFragment)
                     .commit()
         }
+        mFragments.clear()
+        mFragments.add(mMovieFragment)
+        mFragments.add(mCatalogFragment)
 
-        supportFragmentManager.beginTransaction()
-                .hide(mCatalogFragment)
-                .show(mMovieFragment)
-                .commit()
+    }
+
+    private fun switchToFragment(@IntRange(from = 0, to = 1) index: Int) {
+        val transaction = supportFragmentManager.beginTransaction()
+        mFragments.forEachIndexed { i, f ->
+            if (i == index) {
+                transaction.show(f)
+            } else
+                transaction.hide(f)
+        }
+        transaction.commit()
     }
 
     override fun onBackPressed() {

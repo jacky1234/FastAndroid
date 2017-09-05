@@ -13,13 +13,15 @@ import kotlinx.android.synthetic.main.fragment_movie.*
  *
  */
 class MovieFragment : BaseFragment() {
-    var mTabs = listOf<String>("即将上映").toMutableList()
+    var mTabs = listOf("正在热播", "即将上映").toMutableList()
     lateinit var mFragments: ArrayList<Fragment>
 
 
     override fun initView() {
         mFragments = ArrayList()
-        var upcomingFragment = UpcomingFragment()
+        val upcomingFragment = UpcomingFragment()
+        val hotMovieFragment = HotMovieFragment()
+        mFragments.add(hotMovieFragment)
         mFragments.add(upcomingFragment)
         vp_content.adapter = ViewPagerFragmentAdapter(fragmentManager, mFragments, mTabs)
         tabs.setupWithViewPager(vp_content)

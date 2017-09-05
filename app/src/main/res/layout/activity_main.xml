@@ -1,27 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <android.support.design.widget.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|enterAlways|snap" />
-    </android.support.design.widget.AppBarLayout>
 
     <FrameLayout
         android:id="@+id/frameLayout"
-        android:layout_marginTop="?attr/actionBarSize"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
+        android:layout_height="0dp"
+        android:layout_weight="1">
     </FrameLayout>
 
-</android.support.design.widget.CoordinatorLayout>
+    <com.jack.ioultimateencrypt.sample.ui.widget.NestRadioGroup
+        android:id="@+id/menu_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.jack.ioultimateencrypt.sample.ui.widget.TabBar_Mains
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:checkId="@id/tab_main"
+            app:icon="@drawable/home_bg_selected"
+            app:name="首页">
+
+        </com.jack.ioultimateencrypt.sample.ui.widget.TabBar_Mains>
+
+        <com.jack.ioultimateencrypt.sample.ui.widget.TabBar_Mains
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:checkId="@id/tab_test"
+            app:icon="@drawable/home_bg_selected"
+            app:name="测试">
+
+        </com.jack.ioultimateencrypt.sample.ui.widget.TabBar_Mains>
+
+    </com.jack.ioultimateencrypt.sample.ui.widget.NestRadioGroup>
+
+</LinearLayout>
+
+
+    <!--<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent">-->
+
+    <!--<android.support.design.widget.AppBarLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content">-->
+
+    <!--<android.support.v7.widget.Toolbar-->
+    <!--android:id="@+id/toolbar"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="?attr/actionBarSize"-->
+    <!--android:background="?attr/colorPrimary"-->
+    <!--app:layout_scrollFlags="scroll|enterAlways|snap"/>-->
+    <!--</android.support.design.widget.AppBarLayout>-->
+
+    <!--<FrameLayout-->
+    <!--android:id="@+id/frameLayout"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:layout_marginTop="?attr/actionBarSize">-->
+    <!--</FrameLayout>-->
+
+    <!--</android.support.design.widget.CoordinatorLayout>-->

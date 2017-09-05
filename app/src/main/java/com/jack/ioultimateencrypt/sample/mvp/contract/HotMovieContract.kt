@@ -2,7 +2,7 @@ package com.jack.ioultimateencrypt.sample.mvp.contract
 
 import com.jack.ioultimateencrypt.sample.mvp.BasePresenter
 import com.jack.ioultimateencrypt.sample.mvp.BaseView
-import com.jack.ioultimateencrypt.sample.mvp.model.bean.UpcomingMovieBean
+import com.jack.ioultimateencrypt.sample.mvp.model.bean.HotMovieBean
 
 /**
  * 2017/8/25.
@@ -10,14 +10,14 @@ import com.jack.ioultimateencrypt.sample.mvp.model.bean.UpcomingMovieBean
  * @author  jackyang
  *
  */
-interface UpComingContract {
+interface HotMovieContract {
     interface Present : BasePresenter {
-        fun queryUpComingMovies(cityId: Int)
+        fun queryHotMovies(cityId: Int)
     }
 
     interface View : BaseView<Present> {
-        fun onResponseMovies(bean: UpcomingMovieBean?)
+        fun onResponseHotMovies(bean: HotMovieBean)
 
-        fun onError(t:Throwable)
+        fun onError(t: Throwable)
     }
 }

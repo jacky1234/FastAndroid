@@ -1,5 +1,6 @@
 package com.jack.ioultimateencrypt.sample.network.api
 
+import com.jack.ioultimateencrypt.sample.mvp.model.bean.HotMovieBean
 import com.jack.ioultimateencrypt.sample.mvp.model.bean.Location
 import com.jack.ioultimateencrypt.sample.mvp.model.bean.UpcomingMovieBean
 import io.reactivex.Observable
@@ -23,4 +24,7 @@ interface MTimeApi {
 
     @GET("https://api-m.mtime.cn/Movie/MovieComingNew.api")
     fun queryUpcomingMovies(@Query("locationId") cityId: Int): Observable<UpcomingMovieBean>
+
+    @GET("https://api-m.mtime.cn/Showtime/LocationMovies.api")
+    fun queryHotMovies(@Query("locationId") cityId: Int): Observable<HotMovieBean>
 }

@@ -5,4 +5,8 @@
     <string name="button_deny">不允许</string>
     <string name="permission_locate_deny">定位权限被拒绝</string>
     <string name="exit_notify">再按一次退出!</string>
+    <string name="unavailable_network">网络未连接</string>
+    <string name="empty_network_error">网络错误，点击重试！</string>
+    <string name="empty_no_data">没有请求到数据，点击重试...</string>
+    <string name="mention_for_test">useless, it is just a test!</string>
 </resources>

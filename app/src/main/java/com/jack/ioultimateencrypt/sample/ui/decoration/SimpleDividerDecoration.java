@@ -20,11 +20,20 @@ public class SimpleDividerDecoration extends RecyclerView.ItemDecoration {
     private int dividerHeight;
     private Paint dividerPaint;
     private int orientation;
-    private int dividerInDp;
+    private float dividerInDp;
     private int dividerColor;
+    private DividerInterceptor mDividerInterceptor;
+
+    public void setDividerInterceptor(DividerInterceptor dividerInterceptor) {
+        mDividerInterceptor = dividerInterceptor;
+    }
 
     public SimpleDividerDecoration(Context context) {
         this(context, Color.GRAY, 8, RecyclerView.VERTICAL);
+    }
+
+    public interface DividerInterceptor {
+        boolean intercept(int pos);
     }
 
     /**
@@ -33,7 +42,7 @@ public class SimpleDividerDecoration extends RecyclerView.ItemDecoration {
      * @param dividerInDp
      * @param orientation
      */
-    public SimpleDividerDecoration(Context context, int dividerColor, int dividerInDp, int orientation) {
+    public SimpleDividerDecoration(Context context, int dividerColor, float dividerInDp, int orientation) {
         this.dividerColor = dividerColor;
         this.dividerInDp = dividerInDp;
         this.orientation = orientation;
@@ -51,12 +60,18 @@ public class SimpleDividerDecoration extends RecyclerView.ItemDecoration {
     @Override
     public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
         super.getItemOffsets(outRect, view, parent, state);
-//        int pos = parent.getChildAdapterPosition(view);
-        if (orientation == RecyclerView.VERTICAL) {
-            outRect.bottom = dividerHeight;
-        } else {
-            outRect.right = dividerHeight;
+        int pos = parent.getChildAdapterPosition(view);
+        if (!interceptor(pos)) {
+            if (orientation == RecyclerView.VERTICAL) {
+                outRect.bottom = dividerHeight;
+            } else {
+                outRect.right = dividerHeight;
+            }
         }
+    }
+
+    private boolean interceptor(int position) {
+        return mDividerInterceptor != null && mDividerInterceptor.intercept(position);
     }
 
     @Override

@@ -35,7 +35,7 @@ class CatalogAdapter(context: Context, list: MutableList<CatalogBean>) : Recycle
 
     override fun onBindViewHolder(holder: CatalogAdapter.CatalogHolder?, position: Int) {
         var bean = list?.get(position)
-        holder?.tv_title?.setText(bean?.simple)
+        holder?.tv_title?.text = bean?.simple
 
         holder?.itemView?.setOnClickListener { _ ->
             context?.startActivity(Intent(context, Class.forName(bean?.path)))

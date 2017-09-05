@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <item name="textviewid" type="id"></item>
+
+    <item name="tab_main" type="id"></item>
+    <item name="tab_test" type="id"></item>
 </resources>

@@ -1,6 +1,7 @@
 package com.jack.ioultimateencrypt.sample
 
 import android.content.Context
+import android.support.v4.content.ContextCompat
 import android.widget.Toast
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -18,6 +19,10 @@ fun <T> Observable<T>.applySchedulers(): Observable<T> {
             observeOn(AndroidSchedulers.mainThread())
 }
 
-fun Context.showToast(msg:String){
-    Toast.makeText(applicationContext,msg,Toast.LENGTH_SHORT).show()
+fun Context.showToast(msg: String) {
+    Toast.makeText(applicationContext, msg, Toast.LENGTH_SHORT).show()
+}
+
+fun Context.color(resId: Int): Int {
+    return ContextCompat.getColor(this, resId)
 }

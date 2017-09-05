@@ -14,4 +14,6 @@
     <dimen name="larger_size">14sp</dimen>
     <dimen name="divider_line">0.5dp</dimen>
     <dimen name="divider_larger">12dp</dimen>
+
+    <dimen name="menubar_height">30dp</dimen>
 </resources>

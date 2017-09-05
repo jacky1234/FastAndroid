@@ -10,6 +10,7 @@ import android.widget.TextView
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.jack.ioultimateencrypt.sample.R
 import com.jack.ioultimateencrypt.sample.base.BaseFragment
+import com.jack.ioultimateencrypt.sample.color
 import com.jack.ioultimateencrypt.sample.mvp.contract.UpComingContract
 import com.jack.ioultimateencrypt.sample.mvp.model.bean.Location
 import com.jack.ioultimateencrypt.sample.mvp.model.bean.MovieCataBean
@@ -17,6 +18,7 @@ import com.jack.ioultimateencrypt.sample.mvp.model.bean.UpcomingMovieBean
 import com.jack.ioultimateencrypt.sample.mvp.present.UpComingPresent
 import com.jack.ioultimateencrypt.sample.rx.rxbus.EventConstant
 import com.jack.ioultimateencrypt.sample.rx.rxbus.RxBusManager
+import com.jack.ioultimateencrypt.sample.showToast
 import com.jack.ioultimateencrypt.sample.ui.adapter.MovieCataAdapter
 import com.jack.ioultimateencrypt.sample.ui.adapter.MovieDetailAdapter
 import com.jack.ioultimateencrypt.sample.ui.adapter.UpcomingMovieAdapter
@@ -52,25 +54,39 @@ class UpcomingFragment : BaseFragment(), UpComingContract.View, SwipeRefreshLayo
 
     override fun onResponseMovies(bean: UpcomingMovieBean?) {
         swipeRefreshLayout?.isRefreshing = false
-        swipeRefreshLayout?.setOnRefreshListener(this)
-        mAdapter?.setEnableLoadMore(false)   //不需要加载更多
 
-        mUpcomingMovies.clear()
-        mUpcomingMovies.addAll(bean?.moviecomings!!)
+        if (mAdapter.isLoadMoreEnable) {
+            mAdapter.setEnableLoadMore(false)   //不需要加载更多
+        }
 
-        cataLists.clear()
-        //获取月数
-        val month = Calendar.getInstance().get(Calendar.MONTH) + 1
-        cataLists.add(MovieCataBean("最受欢迎", null, true, 0))
-        cataLists.add(MovieCataBean(String.format("%d月大片", month + 1), month + 1, false, 1))
-        cataLists.add(MovieCataBean(String.format("%d月大片", month + 2), month + 2, false, 2))
+        if (bean != null && bean.moviecomings?.isEmpty() == false && bean.attention?.isEmpty() == false) {
+            swipeRefreshLayout?.setOnRefreshListener(this)
+            swipeRefreshLayout.isEnabled = true
 
-        //
-        detailLists.addAll(bean?.attention!!)
+            //获取月数
+            val month = Calendar.getInstance().get(Calendar.MONTH) + 1
+            cataLists.clear()
+            cataLists.add(MovieCataBean("最受欢迎", null, true, 0))
+            cataLists.add(MovieCataBean(String.format("%d月大片", month + 1), month + 1, false, 1))
+            cataLists.add(MovieCataBean(String.format("%d月大片", month + 2), month + 2, false, 2))
 
-        mAdapter.notifyDataSetChanged()
-        mMovieCataAdapter.notifyDataSetChanged()
-        mMovieDetailAdapter.notifyDataSetChanged()
+            mAdapter.setNewData(bean.moviecomings)
+            mMovieDetailAdapter.setNewData(bean.attention)
+            mMovieCataAdapter.setNewData(cataLists)
+        } else {
+            mAdapter.emptyView = noDataView
+        }
+    }
+
+    override fun onError(t: Throwable) {
+        mAdapter.emptyView = errorView
+        swipeRefreshLayout?.isRefreshing = false
+        swipeRefreshLayout.isEnabled = false
+        swipeRefreshLayout?.setOnRefreshListener(null)
+
+        if (mAdapter.isLoadMoreEnable) {
+            mAdapter.setEnableLoadMore(false)   //不需要加载更多
+        }
     }
 
     override fun getLayoutResources(): Int {
@@ -86,6 +102,12 @@ class UpcomingFragment : BaseFragment(), UpComingContract.View, SwipeRefreshLayo
     private val cataLists = ArrayList<MovieCataBean>()
     private val detailLists = ArrayList<UpcomingMovieBean.AttentionBean>()
     override fun initView() {
+        errorViewClickListener = View.OnClickListener { v ->
+            onRefresh()
+        }
+
+        noDataViewClickListener = errorViewClickListener
+
         mPresent = UpComingPresent(context, this)
 
         recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
@@ -123,6 +145,11 @@ class UpcomingFragment : BaseFragment(), UpComingContract.View, SwipeRefreshLayo
             }
         })
 
+        val simpleDividerDecoration = SimpleDividerDecoration(context, context.color(R.color.gray), 0.5f, RecyclerView.VERTICAL)
+        simpleDividerDecoration.setDividerInterceptor(SimpleDividerDecoration.DividerInterceptor { i ->
+            return@DividerInterceptor true
+        })
+        recyclerView.addItemDecoration(simpleDividerDecoration)
 
         //load more and refresh
         swipeRefreshLayout.setOnRefreshListener(this)
@@ -142,20 +169,28 @@ class UpcomingFragment : BaseFragment(), UpComingContract.View, SwipeRefreshLayo
                 }
     }
 
+//    override fun onLazyLoad() {
+//        super.onLazyLoad()
+//        if (mCityId != null) { //loc success
+//            mAdapter.emptyView = loadingView
+//            mPresent.queryUpComingMovies(mCityId!!)
+//        }
+//    }
+
     private fun initHeader() {
         val header = LayoutInflater.from(context).inflate(R.layout.item_header_upcoming, null)
         mAdapter.addHeaderView(header)
 
-        var rvCatalog = header.findViewById(R.id.rvCatalog) as RecyclerView
-        var rvDetail = header.findViewById(R.id.rvDetail) as RecyclerView
+        val rvCatalog = header.findViewById(R.id.rvCatalog) as RecyclerView
+        val rvDetail = header.findViewById(R.id.rvDetail) as RecyclerView
 
         //catalog
         rvCatalog.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
         mMovieCataAdapter = MovieCataAdapter(R.layout.item_movie_catalog, cataLists)
         rvCatalog.adapter = mMovieCataAdapter
-        rvCatalog.addItemDecoration(SimpleDividerDecoration(context, Color.TRANSPARENT, 12, RecyclerView.HORIZONTAL))
+        rvCatalog.addItemDecoration(SimpleDividerDecoration(context, Color.TRANSPARENT, 12.0f, RecyclerView.HORIZONTAL))
         mMovieCataAdapter.setOnItemChildClickListener { adapter, _, position ->
-
+            context.showToast(getString(R.string.mention_for_test))
             cataLists.forEachIndexed { index, any ->
                 any.bChecked = position == index
             }
@@ -167,6 +202,6 @@ class UpcomingFragment : BaseFragment(), UpComingContract.View, SwipeRefreshLayo
         rvDetail.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
         mMovieDetailAdapter = MovieDetailAdapter(R.layout.item_movie_detail, detailLists)
         rvDetail.adapter = mMovieDetailAdapter
-        rvDetail.addItemDecoration(SimpleDividerDecoration(context, Color.TRANSPARENT, 12, RecyclerView.HORIZONTAL))
+        rvDetail.addItemDecoration(SimpleDividerDecoration(context, Color.TRANSPARENT, 12.0f, RecyclerView.HORIZONTAL))
     }
 }

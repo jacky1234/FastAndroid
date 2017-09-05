@@ -19,7 +19,7 @@ class UpComingPresent(context: Context, view: UpComingContract.View) : UpComingC
                 .subscribe({ bean ->
                     mView.onResponseMovies(bean)
                 }, { t ->
-                    mContext.showToast(t.toString())
+                    mView.onError(t)
                 })
     }
 

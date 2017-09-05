@@ -14,7 +14,10 @@ class StoreKey {
         //通过接口返回的所有城市
         val ALL_CITIES = "ALL_CITIES"
 
-        //通过接口返回的所有城市，接口百度定位得到的我所在的城市信息 City
+        //通过接口返回的所有城市，结合百度定位得到的我所在的城市信息 City
         val MY_CITY = "MY_CITY"
+
+        //我选择的城市，一个List，其中List[0] 是我最近一次选择的城市
+        val MY_CHOOSED_CITY = "MY_CHOOSED_CITY"
     }
 }

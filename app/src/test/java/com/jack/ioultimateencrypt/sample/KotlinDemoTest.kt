@@ -105,10 +105,13 @@ class KotlinDemoTest {
     @Test
     fun three_test() {
         var s: String? = null
-        println(s?.length ?: 0)
+        s?.length ?: println("s is null")
+        if (s == null) {
+            println("s is null")
+        }
 
         s = "hello"
-        println(s?.length == 5 ?: false)
+        println(s?.length == 4)
 
         var bean: UpcomingMovieBean.MoviecomingsBean? = UpcomingMovieBean.MoviecomingsBean()
         bean?.videos = ArrayList()
