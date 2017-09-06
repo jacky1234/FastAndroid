@@ -18,7 +18,9 @@
         android:id="@+id/menu_group"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:padding="5dp">
 
         <com.jack.ioultimateencrypt.sample.ui.widget.TabBar_Mains
             android:layout_width="0dp"

@@ -49,4 +49,8 @@
         <item>create normal queue</item>
         <item>create 10task and run,循环队列示例</item>
     </array>
+
+    <array name="line_progress">
+        <item>test</item>
+    </array>
 </resources>

@@ -13,4 +13,11 @@
         <attr name="textColor" format="reference"/>
     </declare-styleable>
 
+    <declare-styleable name="LineProgress">
+        <attr name="progressColor" format="color"></attr>
+        <attr name="bgColor" format="color"></attr>
+        <attr name="total" format="integer"></attr>
+        <attr name="to" format="integer"></attr>
+    </declare-styleable>
+
 </resources>
