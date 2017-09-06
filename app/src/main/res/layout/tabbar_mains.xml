@@ -16,14 +16,9 @@
     <RadioButton
         android:id="@+id/icon_tabbar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/menubar_height"
-        android:button="@null"/>
-
-    <TextView
-        android:id="@+id/name_tabbar"
-        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:button="@null"
         android:gravity="center"
-        android:textColor="@drawable/tabbar_tvcolor_mains"
         android:textSize="10sp"/>
+
 </LinearLayout>

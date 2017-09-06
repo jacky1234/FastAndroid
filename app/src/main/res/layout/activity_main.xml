@@ -26,7 +26,8 @@
             android:layout_weight="1"
             app:checkId="@id/tab_main"
             app:icon="@drawable/home_bg_selected"
-            app:name="首页">
+            app:name="首页"
+            app:textColor="@color/select_tab_color">
 
         </com.jack.ioultimateencrypt.sample.ui.widget.TabBar_Mains>
 
@@ -36,7 +37,8 @@
             android:layout_weight="1"
             app:checkId="@id/tab_test"
             app:icon="@drawable/home_bg_selected"
-            app:name="测试">
+            app:name="测试"
+            app:textColor="@color/select_tab_color">
 
         </com.jack.ioultimateencrypt.sample.ui.widget.TabBar_Mains>
 

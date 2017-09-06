@@ -10,6 +10,7 @@
         <attr name="icon" format="reference"/>
         <attr name="name" format="string"/>
         <attr name="checkId" format="reference"/>
+        <attr name="textColor" format="reference"/>
     </declare-styleable>
 
 </resources>

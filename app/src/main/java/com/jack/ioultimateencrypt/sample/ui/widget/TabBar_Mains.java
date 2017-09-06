@@ -1,6 +1,7 @@
 package com.jack.ioultimateencrypt.sample.ui.widget;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
@@ -8,7 +9,6 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
-import android.widget.TextView;
 
 import com.jack.ioultimateencrypt.sample.R;
 
@@ -23,8 +23,8 @@ public class TabBar_Mains extends LinearLayout {
     private String sName;
     private Drawable sIcon;
     private RadioButton mRadioButton;
-    private TextView sNameTv;
     private int mCheckId;
+    private ColorStateList mTextColor;
 
     public TabBar_Mains(Context context) {
         this(context, null);
@@ -37,7 +37,10 @@ public class TabBar_Mains extends LinearLayout {
         sName = typedArray.getString(R.styleable.TabBar_Attr_name);
         sIcon = typedArray.getDrawable(R.styleable.TabBar_Attr_icon);
         mCheckId = typedArray.getResourceId(R.styleable.TabBar_Attr_checkId, 0);
+        mTextColor = typedArray.getColorStateList(R.styleable.TabBar_Attr_textColor);
         assert mCheckId != 0;
+        assert mTextColor != null;
+
         typedArray.recycle();
     }
 
@@ -47,16 +50,18 @@ public class TabBar_Mains extends LinearLayout {
 
         mRadioButton = (RadioButton) findViewById(R.id.icon_tabbar);
         mRadioButton.setId(mCheckId);
-        sNameTv = (TextView) findViewById(R.id.name_tabbar);
+        mRadioButton.setTextColor(mTextColor);
         if (TextUtils.isEmpty(sName)) ;
-        else setName(sName);
+        else {
+            setName(sName);
+        }
+
         if (sIcon != null)
             setIcon(sIcon);
     }
 
     public void setName(String name) {
-        sNameTv.setText(name);
-
+        mRadioButton.setText(name);
     }
 
     public void setIcon(Drawable icon) {
