@@ -28,7 +28,7 @@ class HotMovieFragment : BaseFragment(), HotMovieContract.View, SwipeRefreshLayo
         swipeRefreshLayout.setOnRefreshListener(null)
 
         if (mCityId == null) {
-            mCityId = SpUtils.getInstance(context).getCities()?.get(0)?.id      //SpUtils.instance!!->wrong
+            mCityId = SpUtils.getInstance(context).getCities()?.get(0)?.id      //SpUtils.sp!!->wrong
         }
 
         if (mCityId == null) {

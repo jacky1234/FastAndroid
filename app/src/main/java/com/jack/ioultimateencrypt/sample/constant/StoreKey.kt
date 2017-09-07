@@ -21,6 +21,8 @@ class StoreKey {
         val MY_CHOOSED_CITY = "MY_CHOOSED_CITY"
 
 
-        val IS_IN_TEST_MODE = "IS_IN_TEST_MODE"
+        val IS_INITIATED = "IS_INITIATED"   //是否初始化过
+        val IS_IN_TEST_MODE = "IS_IN_TEST_MODE" //test
+        val IS_IN_DAYTIME_MODE = "IS_IN_DAYTIME_MODE"   //daytime
     }
 }

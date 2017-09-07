@@ -38,7 +38,7 @@ public class SharedPreferenceKeyValueStore implements KeyValueStore {
 
     @Override
     public <T> T get(String key, Class<T> targetType) {
-        String value = delegate.getString(key, null);
+        String value = delegate.getString(key, "");
         return new KeyValueImpl<T>(key, JsonUtils.fromJSON(value, targetType)).getValue();
     }
 
@@ -65,6 +65,11 @@ public class SharedPreferenceKeyValueStore implements KeyValueStore {
     @Override
     public Float getFloat(String key) {
         return get(key, Float.class);
+    }
+
+    @Override
+    public Boolean getBoolean(String key) {
+        return get(key, Boolean.class);
     }
 
     @Override

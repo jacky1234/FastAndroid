@@ -21,6 +21,26 @@ class SpUtils private constructor(context: Context) {
         return mkeyValueStore.getBoolean(StoreKey.IS_IN_TEST_MODE)
     }
 
+    fun setIsInTestMode(b: Boolean) {
+        mkeyValueStore.set(StoreKey.IS_IN_TEST_MODE, b)
+    }
+
+    fun isInDaytimeMode(): Boolean {
+        return mkeyValueStore.getBoolean(StoreKey.IS_IN_DAYTIME_MODE)
+    }
+
+    fun setIsInDaytime(b: Boolean) {
+        mkeyValueStore.set(StoreKey.IS_IN_DAYTIME_MODE, b)
+    }
+
+    fun isInited(): Boolean? {
+        return mkeyValueStore.getBoolean(StoreKey.IS_INITIATED)
+    }
+
+    fun setIsInited(b: Boolean) {
+        mkeyValueStore.set(StoreKey.IS_INITIATED, b)
+    }
+
     fun saveBDLocation(bdLocation: String?) {
         mkeyValueStore.set(StoreKey.BD_LOCATION, bdLocation)
     }

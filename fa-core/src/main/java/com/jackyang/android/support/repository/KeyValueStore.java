@@ -81,4 +81,6 @@ public interface KeyValueStore {
      * @return 键值
      */
     Float getFloat(String key);
+
+    Boolean getBoolean(String key);
 }

@@ -8,6 +8,7 @@ Rxjava2，Retrofit，以及BaseRecyclerViewAdapterHelper等框架。
 - 引用的本地存储方式
 - 队列,基于HandlerThread
 - Rxbus,Rxjava2方式
+- Aop编程支持(@Async @Cacheable @DebugTrace @HookMethod @LogMethod @Prefs @Safe)
 
 ## 遗留问题
 1. 加载图片

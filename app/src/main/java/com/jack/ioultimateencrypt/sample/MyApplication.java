@@ -51,6 +51,7 @@ public class MyApplication extends Application {
                 .registerSingleton(NetWork.class, NetWorkImpl.class)
         ;
 
+        Setting.init(this);
     }
 
 }
