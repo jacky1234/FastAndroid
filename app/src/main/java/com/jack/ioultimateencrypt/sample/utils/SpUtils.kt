@@ -17,6 +17,10 @@ class SpUtils private constructor(context: Context) {
     val mContext: Context = context
     val mkeyValueStore: KeyValueStore = Injections.getBean(KeyValueStore::class.java)
 
+    fun isInTestMode(): Boolean {
+        return mkeyValueStore.getBoolean(StoreKey.IS_IN_TEST_MODE)
+    }
+
     fun saveBDLocation(bdLocation: String?) {
         mkeyValueStore.set(StoreKey.BD_LOCATION, bdLocation)
     }

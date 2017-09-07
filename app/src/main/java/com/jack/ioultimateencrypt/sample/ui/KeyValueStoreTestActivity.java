@@ -85,6 +85,15 @@ public class KeyValueStoreTestActivity extends BaseActivity {
                 list = keyValueStore.getList("list", Person.class);
                 Log.d(TAG, "read list:" + list.toString());
                 break;
+            case 6:
+                final Boolean aBoolean = keyValueStore.getBoolean("123456789");
+                Log.d(TAG, "read boolean not saved:" + aBoolean);
+                break;
+            case 7:
+                keyValueStore.set("123", true);
+                final boolean aBoolean1 = keyValueStore.getBoolean("123");
+                Log.d(TAG, "read boolean saved:" + aBoolean1);
+                break;
         }
     }
 

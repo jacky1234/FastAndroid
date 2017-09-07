@@ -19,5 +19,8 @@ class StoreKey {
 
         //我选择的城市，一个List，其中List[0] 是我最近一次选择的城市
         val MY_CHOOSED_CITY = "MY_CHOOSED_CITY"
+
+
+        val IS_IN_TEST_MODE = "IS_IN_TEST_MODE"
     }
 }
