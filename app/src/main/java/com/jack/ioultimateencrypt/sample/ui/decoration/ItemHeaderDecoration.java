@@ -54,10 +54,12 @@ public abstract class ItemHeaderDecoration extends RecyclerView.ItemDecoration {
             final int childCount = layoutManager.getChildCount();
             if (mDecorView == null) {
                 for (int i = getHeadCount(); i < childCount + getHeadCount(); i++) {
-                    mDecorView = parent.findViewHolderForLayoutPosition(i).itemView.findViewById(getDecorationLayoutId());
-                    if (mDecorView != null) {
-                        mDecorHeight = mDecorView.getHeight();
-                        break;
+                    if (parent.findViewHolderForLayoutPosition(i).itemView != null) {
+                        mDecorView = parent.findViewHolderForLayoutPosition(i).itemView.findViewById(getDecorationLayoutId());
+                        if (mDecorView != null) {
+                            mDecorHeight = mDecorView.getHeight();
+                            break;
+                        }
                     }
                 }
 

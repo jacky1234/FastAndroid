@@ -11,6 +11,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import com.jack.ioultimateencrypt.sample.R
 import com.jack.ioultimateencrypt.sample.base.BaseFragment
 import com.jack.ioultimateencrypt.sample.color
+import com.jack.ioultimateencrypt.sample.effect.FloatingEffect
 import com.jack.ioultimateencrypt.sample.mvp.contract.UpComingContract
 import com.jack.ioultimateencrypt.sample.mvp.model.bean.Location
 import com.jack.ioultimateencrypt.sample.mvp.model.bean.MovieCataBean
@@ -112,11 +113,19 @@ class UpcomingFragment : BaseFragment(), UpComingContract.View, SwipeRefreshLayo
 
         recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         mAdapter = UpcomingMovieAdapter(R.layout.item_upcoming_movie, mUpcomingMovies)
+        val mFloatingEffect = FloatingEffect(activity)
+        mAdapter.inject(mFloatingEffect)
         recyclerView.adapter = mAdapter
         mAdapter.openLoadAnimation(BaseQuickAdapter.ALPHAIN)
         mAdapter.setNotDoAnimationCount(3)
         mAdapter.setOnItemClickListener { adapter, view, position ->
             //            TODO("请求详情")
+        }
+
+        mAdapter.setOnItemChildClickListener { adapter, view, position ->
+            when (view.id) {
+                R.id.iv_like -> mFloatingEffect.get(position).onClickListener?.onClick(view)
+            }
         }
 
         recyclerView.addItemDecoration(object : ItemHeaderDecoration() {

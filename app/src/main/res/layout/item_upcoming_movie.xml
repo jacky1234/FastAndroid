@@ -51,11 +51,36 @@
             android:layout_toRightOf="@id/rl_left"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tv_movie_name"
-                style="@style/emphasize"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_movie_name"
+                    style="@style/emphasize"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:id="@+id/tv_hot_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="热度 "/>
+
+                <com.jack.ioultimateencrypt.sample.ui.widget.LineProgress
+                    android:id="@+id/lineProgress"
+                    android:layout_width="100dp"
+                    android:layout_height="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="15dp"
+                    app:total="1000"/>
+
+            </LinearLayout>
+
 
             <TextView
                 android:id="@+id/tv_want_see"
@@ -65,12 +90,26 @@
                 android:textSize="@dimen/larger_size"/>
 
 
-            <TextView
-                android:id="@+id/tv_actor"
-                style="@style/weaken"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/pattern_margin"/>
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_actor"
+                    style="@style/weaken"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/pattern_margin"
+                    android:layout_weight="1"/>
+
+                <ImageView
+                    android:id="@+id/iv_like"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="15dp"/>
+
+            </LinearLayout>
 
         </LinearLayout>
 

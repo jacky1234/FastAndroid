@@ -26,7 +26,7 @@ import com.jack.ioultimateencrypt.sample.R;
 
 public class LineProgress extends View implements Runnable {
     private Paint mProgressPaint;
-    private Paint mBackgroudPaint;
+    private Paint mBackgroundPaint;
     private final int DEFAULT_PROGRESS_COLOR = 0x353535;
     private final int DEFAULT_TOTOAL_COLOR = 0x5C5C5C;
     private RectF mBgRectF = new RectF(0, 0, 0, 0);
@@ -50,7 +50,7 @@ public class LineProgress extends View implements Runnable {
         super(context, attrs, defStyleAttr);
 
         mProgressPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        mBackgroudPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        mBackgroundPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.LineProgress);
         try {
             int progressColor = a.getColor(R.styleable.LineProgress_progressColor, DEFAULT_PROGRESS_COLOR);
@@ -58,9 +58,9 @@ public class LineProgress extends View implements Runnable {
             total = a.getInteger(R.styleable.LineProgress_total, 100);
             to = a.getInteger(R.styleable.LineProgress_to, 0);
             mProgressPaint.setColor(progressColor);
-            mBackgroudPaint.setColor(bgColor);
+            mBackgroundPaint.setColor(bgColor);
 
-            assert total > to && to > 0;
+            assert total >= to && to > 0;
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -97,7 +97,6 @@ public class LineProgress extends View implements Runnable {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-
         final int radius = getMeasuredHeight() / 2;
 
         int drawTo = (int) ((current * 1.0f / total) * getWidth());
@@ -105,7 +104,7 @@ public class LineProgress extends View implements Runnable {
         mBgRectF.set(0, 0, getWidth(), getHeight());
         mToRectF.set(0, 0, drawTo, getHeight());
 
-        canvas.drawRoundRect(mBgRectF, radius, radius, mBackgroudPaint);
+        canvas.drawRoundRect(mBgRectF, radius, radius, mBackgroundPaint);
         canvas.drawRoundRect(mToRectF, radius, radius, mProgressPaint);
     }
 
@@ -135,6 +134,11 @@ public class LineProgress extends View implements Runnable {
     public void to(int to) {
         this.current = to;
         invalidate();
+    }
+
+    public LineProgress setTotal(int total) {
+        this.total = total;
+        return this;
     }
 
     @Override

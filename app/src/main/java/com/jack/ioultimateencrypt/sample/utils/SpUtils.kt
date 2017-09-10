@@ -91,6 +91,5 @@ class SpUtils private constructor(context: Context) {
             }
             return instance!!
         }
-
     }
 }

@@ -82,7 +82,7 @@ class HotMovieFragment : BaseFragment(), HotMovieContract.View, SwipeRefreshLayo
         //listener
         RxBusManager.register(this, EventConstant.ON_BDLOCATION_SUCCESS, Location.City::class.java)
                 .subscribe { city ->
-                    swipeRefreshLayout.setOnRefreshListener(null)
+                    swipeRefreshLayout?.setOnRefreshListener(null)
                     mCityId = city.id
                     mPresent.queryHotMovies(mCityId!!)
                 }
