@@ -25,7 +25,6 @@ import kotlinx.android.synthetic.main.fragment_catelog.*
  */
 class HotMovieFragment : BaseFragment(), HotMovieContract.View, SwipeRefreshLayout.OnRefreshListener {
     override fun onRefresh() {
-        swipeRefreshLayout.setOnRefreshListener(null)
 
         if (mCityId == null) {
             mCityId = SpUtils.getInstance(context).getCities()?.get(0)?.id      //SpUtils.sp!!->wrong
@@ -41,7 +40,7 @@ class HotMovieFragment : BaseFragment(), HotMovieContract.View, SwipeRefreshLayo
         swipeRefreshLayout?.isRefreshing = false
 
         if (bean.ms?.isEmpty() == false) {
-            swipeRefreshLayout.setOnRefreshListener(this)
+            swipeRefreshLayout.isEnabled = true
             mAdapter.setNewData(bean.ms)
         } else {
             swipeRefreshLayout.setOnRefreshListener(null)
@@ -53,7 +52,6 @@ class HotMovieFragment : BaseFragment(), HotMovieContract.View, SwipeRefreshLayo
         mAdapter.emptyView = errorView
         swipeRefreshLayout?.isRefreshing = false
         swipeRefreshLayout.isEnabled = false
-        swipeRefreshLayout?.setOnRefreshListener(null)
     }
 
     private lateinit var mAdapter: HotMovieAdapter
@@ -82,7 +80,7 @@ class HotMovieFragment : BaseFragment(), HotMovieContract.View, SwipeRefreshLayo
         //listener
         RxBusManager.register(this, EventConstant.ON_BDLOCATION_SUCCESS, Location.City::class.java)
                 .subscribe { city ->
-                    swipeRefreshLayout?.setOnRefreshListener(null)
+                    swipeRefreshLayout?.isEnabled = false
                     mCityId = city.id
                     mPresent.queryHotMovies(mCityId!!)
                 }

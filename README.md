@@ -19,6 +19,10 @@ Rxjava2，Retrofit，以及BaseRecyclerViewAdapterHelper等框架。
 基于AppCompatActivity的偷换控件原理实现了无缝换肤功能。参照源码实现在Activity onCreate中为LayoutInflater setFactory, 将View的创建过程交给自定义的SkinCompatViewInflater类来实现
 原博客地址为： [Android-skin-support 一款用心去做的Android 换肤框架](http://blog.csdn.net/ximsfei/article/details/54586827)
 
+**3. [BaseRecyclerViewAdapterHelper](https://github.com/CymChad/BaseRecyclerViewAdapterHelper)**
+a .`BaseQuickAdapter`的`setEmptyView`在下面情形下有crash的bug问题：当Adapter加入了HeaderView，然后调用`setEmptyView`，就会crash。具体处理参考:`UpcomingFragment`(一个即将来袭电影的Fragment)
+
+
 ## 遗留问题
 1. 加载图片
 glide 第一次加载图片有些显示不全，滑动到最低下再反过来就能看到完成的图片，但是picasso加载不会有这个问题，为什么呢？

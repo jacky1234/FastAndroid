@@ -40,7 +40,6 @@ class UpcomingFragment : BaseFragment(), UpComingContract.View, SwipeRefreshLayo
     }
 
     override fun onRefresh() {
-        swipeRefreshLayout.setOnRefreshListener(null)
         mAdapter.setEnableLoadMore(false)
 
         if (mCityId == null) {
@@ -55,13 +54,13 @@ class UpcomingFragment : BaseFragment(), UpComingContract.View, SwipeRefreshLayo
 
     override fun onResponseMovies(bean: UpcomingMovieBean?) {
         swipeRefreshLayout?.isRefreshing = false
-
-        if (mAdapter.isLoadMoreEnable) {
-            mAdapter.setEnableLoadMore(false)   //不需要加载更多
+        if (!isAddHeader) {
+            mAdapter.addHeaderView(mHeader)
         }
 
+        if (mAdapter.isLoadMoreEnable) mAdapter.setEnableLoadMore(false)
+
         if (bean != null && bean.moviecomings?.isEmpty() == false && bean.attention?.isEmpty() == false) {
-            swipeRefreshLayout?.setOnRefreshListener(this)
             swipeRefreshLayout.isEnabled = true
 
             //获取月数
@@ -72,18 +71,21 @@ class UpcomingFragment : BaseFragment(), UpComingContract.View, SwipeRefreshLayo
             cataLists.add(MovieCataBean(String.format("%d月大片", month + 2), month + 2, false, 2))
 
             mAdapter.setNewData(bean.moviecomings)
-            mMovieDetailAdapter.setNewData(bean.attention)
-            mMovieCataAdapter.setNewData(cataLists)
+            mMovieDetailAdapter?.setNewData(bean.attention)
+            mMovieCataAdapter?.setNewData(cataLists)
         } else {
             mAdapter.emptyView = noDataView
         }
     }
 
     override fun onError(t: Throwable) {
+        if (isAddHeader) {
+            isAddHeader = false
+            mAdapter?.removeAllHeaderView()
+        }
         mAdapter.emptyView = errorView
         swipeRefreshLayout?.isRefreshing = false
-        swipeRefreshLayout.isEnabled = false
-        swipeRefreshLayout?.setOnRefreshListener(null)
+        swipeRefreshLayout.isEnabled = true
 
         if (mAdapter.isLoadMoreEnable) {
             mAdapter.setEnableLoadMore(false)   //不需要加载更多
@@ -98,10 +100,12 @@ class UpcomingFragment : BaseFragment(), UpComingContract.View, SwipeRefreshLayo
     private var mCityId: Int? = null        //caution: 包装类型
     private val mUpcomingMovies = ArrayList<UpcomingMovieBean.MoviecomingsBean>()
     private lateinit var mAdapter: UpcomingMovieAdapter
-    private lateinit var mMovieCataAdapter: MovieCataAdapter
-    private lateinit var mMovieDetailAdapter: MovieDetailAdapter
+    private var mMovieCataAdapter: MovieCataAdapter? = null
+    private var mMovieDetailAdapter: MovieDetailAdapter? = null
     private val cataLists = ArrayList<MovieCataBean>()
     private val detailLists = ArrayList<UpcomingMovieBean.AttentionBean>()
+    private var isAddHeader = false
+    private var mHeader: View? = null
     override fun initView() {
         errorViewClickListener = View.OnClickListener { v ->
             onRefresh()
@@ -114,12 +118,12 @@ class UpcomingFragment : BaseFragment(), UpComingContract.View, SwipeRefreshLayo
         recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         mAdapter = UpcomingMovieAdapter(R.layout.item_upcoming_movie, mUpcomingMovies)
         val mFloatingEffect = FloatingEffect(activity)
-        mAdapter.inject(mFloatingEffect)
+        mAdapter.inject(mFloatingEffect)        //inject floatingView to test
         recyclerView.adapter = mAdapter
         mAdapter.openLoadAnimation(BaseQuickAdapter.ALPHAIN)
         mAdapter.setNotDoAnimationCount(3)
         mAdapter.setOnItemClickListener { adapter, view, position ->
-            //            TODO("请求详情")
+
         }
 
         mAdapter.setOnItemChildClickListener { adapter, view, position ->
@@ -158,10 +162,10 @@ class UpcomingFragment : BaseFragment(), UpComingContract.View, SwipeRefreshLayo
 
         recyclerView.addItemDecoration(simpleDividerDecoration)
 
-        //load more and refresh
         swipeRefreshLayout.setOnRefreshListener(this)
-        swipeRefreshLayout.setColorSchemeColors(Color.rgb(47, 223, 189))
-        mAdapter.setOnLoadMoreListener(this, recyclerView)
+        swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_light,
+                android.R.color.holo_red_light, android.R.color.holo_orange_light,
+                android.R.color.holo_green_light)
 
         registerListener()
 
@@ -169,7 +173,7 @@ class UpcomingFragment : BaseFragment(), UpComingContract.View, SwipeRefreshLayo
                 .setParallaxHeader(R.layout.item_header_upcoming)
                 .registerOnParallaxHeadSetListener(object : RecyclerViewHelper.OnParallaxHeadSetListener {
                     override fun onParallaxHeadSetListener(head: RecyclerViewHelper.CustomRelativeWrapper) {
-                        initHeader(head)
+                        initHeaderAndAddHeader(head)
                     }
                 })
                 .registerParallaxScrollListener(object : RecyclerViewHelper.OnParallaxScroll {
@@ -188,15 +192,9 @@ class UpcomingFragment : BaseFragment(), UpComingContract.View, SwipeRefreshLayo
                 }
     }
 
-//    override fun onLazyLoad() {
-//        super.onLazyLoad()
-//        if (mCityId != null) { //loc success
-//            mAdapter.emptyView = loadingView
-//            mPresent.queryUpComingMovies(mCityId!!)
-//        }
-//    }
-
-    private fun initHeader(header: View) {
+    private fun initHeaderAndAddHeader(header: View) {
+        mHeader = header
+        isAddHeader = true
         mAdapter.addHeaderView(header)
 
         val rvCatalog = header.findViewById(R.id.rvCatalog) as RecyclerView
@@ -210,7 +208,7 @@ class UpcomingFragment : BaseFragment(), UpComingContract.View, SwipeRefreshLayo
         mMovieCataAdapter = MovieCataAdapter(R.layout.item_movie_catalog, cataLists)
         rvCatalog.adapter = mMovieCataAdapter
         rvCatalog.addItemDecoration(simpleDividerDecoration)
-        mMovieCataAdapter.setOnItemChildClickListener { adapter, _, position ->
+        mMovieCataAdapter?.setOnItemChildClickListener { adapter, _, position ->
             context.showToast(getString(R.string.mention_for_test))
             cataLists.forEachIndexed { index, any ->
                 any.bChecked = position == index
