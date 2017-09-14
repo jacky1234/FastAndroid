@@ -85,7 +85,7 @@ class SpUtils private constructor(context: Context) {
             if (instance == null) {
                 synchronized(SpUtils::class.java) {
                     if (instance == null) {
-                        instance = SpUtils(context)
+                        instance = SpUtils(context.applicationContext)
                     }
                 }
             }

@@ -9,8 +9,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_larger"
-        android:paddingLeft="@dimen/margin_larger"
-        android:paddingRight="@dimen/margin_larger"
         >
     </android.support.v7.widget.RecyclerView>
 
@@ -19,9 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/margin_larger"
-        android:layout_marginTop="@dimen/margin_larger"
-        android:paddingLeft="@dimen/margin_larger"
-        android:paddingRight="@dimen/margin_larger">
+        android:layout_marginTop="@dimen/margin_larger">
     </android.support.v7.widget.RecyclerView>
 
 </LinearLayout>

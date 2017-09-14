@@ -41,9 +41,16 @@ class CollectorTest {
         set.add(city0)
         set.add(city2)
 
-        set.forEach { c->
+        set.forEach { c ->
             print(c.toString())
         }
         println()
+    }
+
+    @Test
+    fun add_all() {
+        val mLists = ArrayList<Int>()
+        mLists.add(0, 1)
+        mLists.forEach { i -> println(i) }
     }
 }

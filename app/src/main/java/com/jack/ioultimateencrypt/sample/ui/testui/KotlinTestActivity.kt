@@ -1,8 +1,8 @@
-package com.jack.ioultimateencrypt.sample.ui
+package com.jack.ioultimateencrypt.sample.ui.testui
 
 import android.view.View
 import android.widget.Spinner
-import com.jack.ioultimateencrypt.sample.base.BaseActivity
+import com.jack.ioultimateencrypt.sample.base.BaseTestActivity
 import com.jack.ioultimateencrypt.sample.R
 import com.jack.test.logger.Log
 
@@ -14,7 +14,7 @@ import com.jack.test.logger.Log
  * https://mp.weixin.qq.com/s?__biz=MzA4MTA1NjM5NQ==&mid=2247483684&idx=1&sn=e0ed1445aad9037b8156fda8269d9b7a&chksm=9f9b86c0a8ec0fd6b526538cf79d7310d24489b67e85c2b9a9b9f750330744b5edb39d00215c&mpshare=1&scene=23&srcid=0814r9M20D6tLBZzA7q6GB6p%23rd
  */
 
-class KotlinTestActivity : BaseActivity() {
+class KotlinTestActivity : BaseTestActivity() {
 
     override fun description() {
         Log.d(TAG, "it is a kotlin test")

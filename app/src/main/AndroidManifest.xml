@@ -39,13 +39,13 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.MainActivity" />
-        <activity android:name=".ui.KeyValueStoreTestActivity" />
-        <activity android:name=".ui.EventDispatchTestActivity" />
-        <activity android:name=".ui.InjectTestActivity" />
-        <activity android:name=".ui.AopTestActivity" />
-        <activity android:name=".ui.KotlinTestActivity" />
-        <activity android:name=".ui.QueueTestActivity"></activity>
-        <activity android:name=".ui.LineProgressTestActivity"></activity>
+        <activity android:name=".ui.testui.KeyValueStoreTestActivity" />
+        <activity android:name=".ui.testui.EventDispatchTestActivity" />
+        <activity android:name=".ui.testui.InjectTestActivity" />
+        <activity android:name=".ui.testui.AopTestActivity" />
+        <activity android:name=".ui.testui.KotlinTestActivity" />
+        <activity android:name=".ui.testui.QueueTestActivity"></activity>
+        <activity android:name=".ui.testui.LineProgressTestActivity"></activity>
 
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"

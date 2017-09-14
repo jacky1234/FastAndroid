@@ -1,4 +1,4 @@
-package com.jack.ioultimateencrypt.sample.ui;
+package com.jack.ioultimateencrypt.sample.ui.testui;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.jack.ioultimateencrypt.sample.base.BaseActivity;
+import com.jack.ioultimateencrypt.sample.base.BaseTestActivity;
 import com.jack.ioultimateencrypt.sample.R;
 import com.jack.ioultimateencrypt.sample.module.Task;
 import com.jack.test.logger.Log;
@@ -22,7 +22,7 @@ import com.jackyang.android.support.queue.Queue;
  * @author jackyang
  */
 
-public class QueueTestActivity extends BaseActivity implements Runnable {
+public class QueueTestActivity extends BaseTestActivity implements Runnable {
     Queue queue;
 
 

@@ -1,11 +1,11 @@
-package com.jack.ioultimateencrypt.sample.ui;
+package com.jack.ioultimateencrypt.sample.ui.testui;
 
 import android.view.View;
 import android.widget.Spinner;
 
-import com.jack.ioultimateencrypt.sample.base.BaseActivity;
 import com.jack.ioultimateencrypt.sample.R;
 import com.jack.ioultimateencrypt.sample.aop.AopShow;
+import com.jack.ioultimateencrypt.sample.base.BaseTestActivity;
 import com.jack.ioultimateencrypt.sample.module.Car;
 import com.jack.ioultimateencrypt.sample.module.Person;
 import com.jack.test.logger.Log;
@@ -18,9 +18,10 @@ import com.safframework.prefs.AppPrefs;
  * github:[https://github.com/jacky1234]
  *
  * @author jackyang
+ *         测试用 baseActivity
  */
 
-public class AopTestActivity extends BaseActivity {
+public class AopTestActivity extends BaseTestActivity {
 
     @Override
     protected void description() {

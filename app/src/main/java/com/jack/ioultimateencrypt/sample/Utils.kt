@@ -26,3 +26,8 @@ fun Context.showToast(msg: String) {
 fun Context.color(resId: Int): Int {
     return ContextCompat.getColor(this, resId)
 }
+
+public inline fun <T> Iterable<T>.firstOrNull(predicate: (T) -> Boolean): T? {
+    for (element in this) if (predicate(element)) return element
+    return null
+}

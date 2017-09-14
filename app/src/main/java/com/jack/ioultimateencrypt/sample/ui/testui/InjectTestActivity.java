@@ -1,11 +1,11 @@
-package com.jack.ioultimateencrypt.sample.ui;
+package com.jack.ioultimateencrypt.sample.ui.testui;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Spinner;
 
-import com.jack.ioultimateencrypt.sample.base.BaseActivity;
+import com.jack.ioultimateencrypt.sample.base.BaseTestActivity;
 import com.jack.ioultimateencrypt.sample.R;
 import com.jack.ioultimateencrypt.sample.service.Login;
 import com.jack.test.logger.Log;
@@ -18,7 +18,7 @@ import com.jackyang.android.support.injection.Injections;
  * @author jackyang
  */
 
-public class InjectTestActivity extends BaseActivity {
+public class InjectTestActivity extends BaseTestActivity {
 
 
     private Login login;

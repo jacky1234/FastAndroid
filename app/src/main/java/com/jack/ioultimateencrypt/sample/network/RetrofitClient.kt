@@ -23,8 +23,8 @@ class RetrofitClient private constructor(context: Context, baseUrl: String) {
     var httpCacheDirectory: File? = null
     val mContext: Context = context
     var cache: Cache? = null
-    var okHttpClient: OkHttpClient? = null
-    var retrofit: Retrofit? = null
+    var okHttpClient: OkHttpClient
+    var retrofit: Retrofit
     val DEFAULT_TIMEOUT: Long = 20
     val url = baseUrl
 
@@ -80,6 +80,6 @@ class RetrofitClient private constructor(context: Context, baseUrl: String) {
         if (service == null) {
             throw RuntimeException("Api service is null!")
         }
-        return retrofit?.create(service)
+        return retrofit.create(service)
     }
 }

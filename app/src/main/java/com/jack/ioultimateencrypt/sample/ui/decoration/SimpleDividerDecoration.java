@@ -13,6 +13,7 @@ import android.view.View;
  * github:[https://github.com/jacky1234]
  *
  * @author jackyang
+ * 简单的decor绘制
  */
 
 public class SimpleDividerDecoration extends RecyclerView.ItemDecoration {
@@ -20,12 +21,16 @@ public class SimpleDividerDecoration extends RecyclerView.ItemDecoration {
     private int dividerHeight;
     private Paint dividerPaint;
     private int orientation;
-    private float dividerInDp;
-    private int dividerColor;
-    private DividerInterceptor mDividerInterceptor;
 
-    public void setDividerInterceptor(DividerInterceptor dividerInterceptor) {
-        mDividerInterceptor = dividerInterceptor;
+    private boolean needOffsetHeader = true;
+    private boolean needOffsetFooter = false;
+
+    public void setNeedOffsetHeader(boolean needOffsetHeader) {
+        this.needOffsetHeader = needOffsetHeader;
+    }
+
+    public void setNeedOffsetFooter(boolean needOffsetFooter) {
+        this.needOffsetFooter = needOffsetFooter;
     }
 
     public SimpleDividerDecoration(Context context) {
@@ -43,8 +48,6 @@ public class SimpleDividerDecoration extends RecyclerView.ItemDecoration {
      * @param orientation
      */
     public SimpleDividerDecoration(Context context, int dividerColor, float dividerInDp, int orientation) {
-        this.dividerColor = dividerColor;
-        this.dividerInDp = dividerInDp;
         this.orientation = orientation;
 
         dividerPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -61,17 +64,18 @@ public class SimpleDividerDecoration extends RecyclerView.ItemDecoration {
     public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
         super.getItemOffsets(outRect, view, parent, state);
         int pos = parent.getChildAdapterPosition(view);
-        if (!interceptor(pos)) {
-            if (orientation == RecyclerView.VERTICAL) {
-                outRect.bottom = dividerHeight;
-            } else {
-                outRect.right = dividerHeight;
-            }
-        }
-    }
+        int count = parent.getLayoutManager().getItemCount();
 
-    private boolean interceptor(int position) {
-        return mDividerInterceptor != null && mDividerInterceptor.intercept(position);
+        if (orientation == RecyclerView.VERTICAL) {
+            outRect.bottom = dividerHeight;
+            if (pos == 0 && needOffsetHeader) outRect.top = dividerHeight;
+            if (pos == count - 1 && !needOffsetFooter) outRect.bottom = 0;
+
+        } else {
+            outRect.right = dividerHeight;
+            if (pos == 0 && needOffsetHeader) outRect.left = dividerHeight;
+            if (pos == count - 1 && !needOffsetFooter) outRect.right = 0;
+        }
     }
 
     @Override

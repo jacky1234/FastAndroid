@@ -1,4 +1,4 @@
-package com.jack.ioultimateencrypt.sample.ui;
+package com.jack.ioultimateencrypt.sample.ui.testui;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Spinner;
 
 import com.jack.ioultimateencrypt.sample.R;
-import com.jack.ioultimateencrypt.sample.base.BaseActivity;
+import com.jack.ioultimateencrypt.sample.base.BaseTestActivity;
 import com.jack.ioultimateencrypt.sample.module.Person;
 import com.jack.test.logger.Log;
 import com.jackyang.android.support.repository.KeyValueStore;
@@ -25,7 +25,7 @@ import java.util.List;
  *         SP保存示例
  */
 
-public class KeyValueStoreTestActivity extends BaseActivity {
+public class KeyValueStoreTestActivity extends BaseTestActivity {
     private SharedPreferences sharedPreferences;
     private KeyValueStore keyValueStore;
 

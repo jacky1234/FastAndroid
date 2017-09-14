@@ -32,7 +32,7 @@ class CatalogPresent(context: Context, view: CatalogCostract.View) : CatalogCost
 
     override fun getCatalogs() {
         var obs: Observable<List<CatalogBean>>? = context?.let {
-            module?.getCatalogs(it, "com.jack.ioultimateencrypt.sample.ui")
+            module?.getCatalogs(it, "com.jack.ioultimateencrypt.sample.ui.testui")
         }
 
         obs?.applySchedulers()?.subscribe({ lists: List<CatalogBean> ->

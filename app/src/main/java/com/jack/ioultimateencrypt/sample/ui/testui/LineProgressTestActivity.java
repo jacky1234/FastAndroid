@@ -1,11 +1,11 @@
-package com.jack.ioultimateencrypt.sample.ui;
+package com.jack.ioultimateencrypt.sample.ui.testui;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Spinner;
 
 import com.jack.ioultimateencrypt.sample.R;
-import com.jack.ioultimateencrypt.sample.base.BaseActivity;
+import com.jack.ioultimateencrypt.sample.base.BaseTestActivity;
 import com.jack.test.logger.Log;
 
 /**
@@ -15,7 +15,7 @@ import com.jack.test.logger.Log;
  * @author jackyang
  */
 
-public class LineProgressTestActivity extends BaseActivity {
+public class LineProgressTestActivity extends BaseTestActivity {
     @Override
     protected void description() {
         Log.d(TAG, "it is a example of showing LineProgress");

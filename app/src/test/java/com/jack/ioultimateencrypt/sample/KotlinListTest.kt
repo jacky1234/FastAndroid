@@ -13,6 +13,6 @@ class KotlinListTest {
 
     @Test
     fun multableList_test() {
-
+//        var
     }
 }

@@ -4,7 +4,6 @@ import android.graphics.Color
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.view.LayoutInflater
 import android.view.View
 import android.widget.TextView
 import com.chad.library.adapter.base.BaseQuickAdapter
@@ -12,6 +11,7 @@ import com.jack.ioultimateencrypt.sample.R
 import com.jack.ioultimateencrypt.sample.base.BaseFragment
 import com.jack.ioultimateencrypt.sample.color
 import com.jack.ioultimateencrypt.sample.effect.FloatingEffect
+import com.jack.ioultimateencrypt.sample.effect.recyclerview.RecyclerViewHelper
 import com.jack.ioultimateencrypt.sample.mvp.contract.UpComingContract
 import com.jack.ioultimateencrypt.sample.mvp.model.bean.Location
 import com.jack.ioultimateencrypt.sample.mvp.model.bean.MovieCataBean
@@ -155,9 +155,7 @@ class UpcomingFragment : BaseFragment(), UpComingContract.View, SwipeRefreshLayo
         })
 
         val simpleDividerDecoration = SimpleDividerDecoration(context, context.color(R.color.gray), 0.5f, RecyclerView.VERTICAL)
-        simpleDividerDecoration.setDividerInterceptor(SimpleDividerDecoration.DividerInterceptor { i ->
-            return@DividerInterceptor true
-        })
+
         recyclerView.addItemDecoration(simpleDividerDecoration)
 
         //load more and refresh
@@ -167,7 +165,19 @@ class UpcomingFragment : BaseFragment(), UpComingContract.View, SwipeRefreshLayo
 
         registerListener()
 
-        initHeader()
+        RecyclerViewHelper.Builder(recyclerView)
+                .setParallaxHeader(R.layout.item_header_upcoming)
+                .registerOnParallaxHeadSetListener(object : RecyclerViewHelper.OnParallaxHeadSetListener {
+                    override fun onParallaxHeadSetListener(head: RecyclerViewHelper.CustomRelativeWrapper) {
+                        initHeader(head)
+                    }
+                })
+                .registerParallaxScrollListener(object : RecyclerViewHelper.OnParallaxScroll {
+                    override fun onParallaxScroll(percentage: Float, offset: Float, parallax: View) {
+                        println("percent:$percentage,offset:$offset")
+                    }
+                })
+                .create()
     }
 
     private fun registerListener() {
@@ -186,18 +196,20 @@ class UpcomingFragment : BaseFragment(), UpComingContract.View, SwipeRefreshLayo
 //        }
 //    }
 
-    private fun initHeader() {
-        val header = LayoutInflater.from(context).inflate(R.layout.item_header_upcoming, null)
+    private fun initHeader(header: View) {
         mAdapter.addHeaderView(header)
 
         val rvCatalog = header.findViewById(R.id.rvCatalog) as RecyclerView
         val rvDetail = header.findViewById(R.id.rvDetail) as RecyclerView
 
+        val simpleDividerDecoration = SimpleDividerDecoration(context, Color.TRANSPARENT, 12.0f, RecyclerView.HORIZONTAL)
+        simpleDividerDecoration.setNeedOffsetHeader(true)
+        simpleDividerDecoration.setNeedOffsetFooter(false)
         //catalog
         rvCatalog.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
         mMovieCataAdapter = MovieCataAdapter(R.layout.item_movie_catalog, cataLists)
         rvCatalog.adapter = mMovieCataAdapter
-        rvCatalog.addItemDecoration(SimpleDividerDecoration(context, Color.TRANSPARENT, 12.0f, RecyclerView.HORIZONTAL))
+        rvCatalog.addItemDecoration(simpleDividerDecoration)
         mMovieCataAdapter.setOnItemChildClickListener { adapter, _, position ->
             context.showToast(getString(R.string.mention_for_test))
             cataLists.forEachIndexed { index, any ->
@@ -211,6 +223,7 @@ class UpcomingFragment : BaseFragment(), UpComingContract.View, SwipeRefreshLayo
         rvDetail.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
         mMovieDetailAdapter = MovieDetailAdapter(R.layout.item_movie_detail, detailLists)
         rvDetail.adapter = mMovieDetailAdapter
-        rvDetail.addItemDecoration(SimpleDividerDecoration(context, Color.TRANSPARENT, 12.0f, RecyclerView.HORIZONTAL))
+        rvDetail.addItemDecoration(simpleDividerDecoration)
     }
 }
+

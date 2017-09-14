@@ -19,7 +19,7 @@ import java.util.*
 class CatalogFragment : BaseFragment(), CatalogCostract.View {
 
     lateinit var present: CatalogPresent
-    var mList = ArrayList<CatalogBean>()
+    private var mList = ArrayList<CatalogBean>()
     lateinit var mAdapter: CatalogAdapter
 
     override fun getLayoutResources(): Int {

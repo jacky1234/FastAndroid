@@ -25,7 +25,7 @@ import com.jack.test.logger.LogFragment;
  * @author jackyang
  */
 
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseTestActivity extends AppCompatActivity {
     protected String TAG;
     private boolean init;
 

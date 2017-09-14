@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity(), MainConstract.View {
             city = lists[0]
         }
 
-        SpUtils.instance!!.saveMyCity(city)
+        SpUtils.getInstance(this)!!.saveMyCity(city)
         RxBusManager.post(EventConstant.ON_BDLOCATION_SUCCESS, city)
     }
 

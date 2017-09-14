@@ -1,11 +1,11 @@
-package com.jack.ioultimateencrypt.sample.ui;
+package com.jack.ioultimateencrypt.sample.ui.testui;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Spinner;
 
-import com.jack.ioultimateencrypt.sample.base.BaseActivity;
+import com.jack.ioultimateencrypt.sample.base.BaseTestActivity;
 import com.jack.ioultimateencrypt.sample.R;
 import com.jack.ioultimateencrypt.sample.events.LoginEvent;
 import com.jack.ioultimateencrypt.sample.events.PwdChangeEvent;
@@ -21,7 +21,7 @@ import com.jackyang.android.support.injection.Injections;
  * @author jackyang
  */
 
-public class EventDispatchTestActivity extends BaseActivity {
+public class EventDispatchTestActivity extends BaseTestActivity {
     private EventDispatcher eventDispatcher;
 
     @Override
