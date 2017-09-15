@@ -170,7 +170,9 @@ class UpcomingFragment : BaseFragment(), UpComingContract.View, SwipeRefreshLayo
         registerListener()
 
         RecyclerViewHelper.Builder(recyclerView)
+                //视觉差
                 .setParallaxHeader(R.layout.item_header_upcoming)
+                .setScrollMultiplier(0.5f)  //设置视觉差因子
                 .registerOnParallaxHeadSetListener(object : RecyclerViewHelper.OnParallaxHeadSetListener {
                     override fun onParallaxHeadSetListener(head: RecyclerViewHelper.CustomRelativeWrapper) {
                         initHeaderAndAddHeader(head)

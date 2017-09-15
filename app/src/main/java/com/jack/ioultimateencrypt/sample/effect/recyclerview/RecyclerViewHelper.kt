@@ -59,12 +59,16 @@ class RecyclerViewHelper private constructor(var mRecyclerView: RecyclerView) {
             anim.duration = 0
             mHeader!!.startAnimation(anim)
         }
+        /**
+         * 实验结果：不设置也能给人视觉差效果
+         * 因为 ofCalculated<=of, 而在滑动过程中，RecyclerView下方子View层级比mHeader高，导致视觉差效果，但这时候 mScrollMultiplier = 0.5f 才能使上方和下方但视觉差效果一致
+         */
         mHeader!!.setClipY(Math.round(ofCalculated))
         if (mParallaxScroll != null) {
             val holder = mRecyclerView.findViewHolderForAdapterPosition(0)
             val left: Float
             if (holder != null) {
-                left = Math.min(1f, ofCalculated / (mHeader!!.getHeight() * mScrollMultiplier))
+                left = Math.min(1f, ofCalculated / (mHeader!!.height * mScrollMultiplier))
             } else {
                 left = 1f
             }
@@ -95,7 +99,9 @@ class RecyclerViewHelper private constructor(var mRecyclerView: RecyclerView) {
             return this
         }
 
-        //视差因子
+        /**
+         * 视差因子，影响HeaderView向下移动的快慢
+         */
         fun setScrollMultiplier(@FloatRange(from = 0.0, to = 1.0) mScrollMultiplier: Float): Builder {
             this.mScrollMultiplier = mScrollMultiplier
             return this
@@ -138,7 +144,7 @@ class RecyclerViewHelper private constructor(var mRecyclerView: RecyclerView) {
 
         override fun dispatchDraw(canvas: Canvas) {
             if (isParallaxHeader)
-                canvas.clipRect(Rect(left, top, right, bottom + mOffset))
+                canvas.clipRect(Rect(left, top + mOffset, right, bottom - mOffset))
             super.dispatchDraw(canvas)
         }
 
