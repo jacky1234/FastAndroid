@@ -2,6 +2,7 @@ package com.jack.ioultimateencrypt.sample.network.api
 
 import com.jack.ioultimateencrypt.sample.mvp.model.bean.HotMovieBean
 import com.jack.ioultimateencrypt.sample.mvp.model.bean.Location
+import com.jack.ioultimateencrypt.sample.mvp.model.bean.MovieDetailBean
 import com.jack.ioultimateencrypt.sample.mvp.model.bean.UpcomingMovieBean
 import io.reactivex.Observable
 import retrofit2.http.GET
@@ -11,7 +12,7 @@ import retrofit2.http.Query
  * 2017/8/24.
  * github:[https://github.com/jacky1234]
  * @author  jackyang
- *
+ * 时光网开放api
  */
 interface MTimeApi {
     companion object {
@@ -19,12 +20,15 @@ interface MTimeApi {
             get() = "https://api-m.mtime.cn/"
     }
 
-    @GET("Showtime/HotCitiesByCinema.api")
+    @GET("/Showtime/HotCitiesByCinema.api")
     fun queryCities(): Observable<Location>
 
-    @GET("https://api-m.mtime.cn/Movie/MovieComingNew.api")
+    @GET("/Movie/MovieComingNew.api")
     fun queryUpcomingMovies(@Query("locationId") cityId: Int): Observable<UpcomingMovieBean>
 
-    @GET("https://api-m.mtime.cn/Showtime/LocationMovies.api")
+    @GET("/Showtime/LocationMovies.api")
     fun queryHotMovies(@Query("locationId") cityId: Int): Observable<HotMovieBean>
+
+    @GET("/movie/detail.api")
+    fun queryMovieDetail(@Query("locationId") locationId: String, @Query("movieId") movieId: String): Observable<MovieDetailBean>
 }

@@ -21,6 +21,7 @@ import kotlinx.android.synthetic.main.fragment_catelog.*
  * 2017/9/2.
  * github:[https://github.com/jacky1234]
  * @author  jackyang
+ * 时光网-正在热映
  *
  */
 class HotMovieFragment : BaseFragment(), HotMovieContract.View, SwipeRefreshLayout.OnRefreshListener {

@@ -2,7 +2,7 @@ package com.jack.ioultimateencrypt.sample.mvp.contract
 
 import com.jack.ioultimateencrypt.sample.mvp.BasePresenter
 import com.jack.ioultimateencrypt.sample.mvp.BaseView
-import com.jack.ioultimateencrypt.sample.mvp.model.bean.CatalogBean
+import com.jack.ioultimateencrypt.sample.mvp.model.bean.MovieDetailBean
 
 /**
  * 2017/9/14.
@@ -12,11 +12,11 @@ import com.jack.ioultimateencrypt.sample.mvp.model.bean.CatalogBean
  */
 interface MovieDetailConstract {
     interface Present : BasePresenter {
-        fun start()
+        fun queryMovieDetail(locationId: String, movieId: String)
     }
 
     interface View : BaseView<Present> {
-        fun setCatalogs(lists: List<CatalogBean>)
-
+        fun onMovieDetailResponse(movieDetailBean: MovieDetailBean)
+        fun onError(t: Throwable)
     }
 }

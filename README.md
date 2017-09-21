@@ -10,6 +10,21 @@ Rxjava2，Retrofit，以及BaseRecyclerViewAdapterHelper等框架。
 - Rxbus,Rxjava2方式
 - Aop编程支持(@Async @Cacheable @DebugTrace @HookMethod @LogMethod @Prefs @Safe)
 
+## AOP 支持
+在Project gradle 配置中添加
+```groovy
+dependencies {
+    classpath 'com.android.tools.build:gradle:2.3.3'
+    classpath 'com.hujiang.aspectjx:gradle-android-plugin-aspectjx:1.0.10'
+}
+```
+
+在module gradle 配置中添加
+```gradle
+apply plugin: 'com.hujiang.android-aspectjx'
+```
+
+
 ## 第三方库
 **1. FloatView**
 使用了开源的FloatView库，基于Facebook的POP动画库
@@ -21,12 +36,12 @@ Rxjava2，Retrofit，以及BaseRecyclerViewAdapterHelper等框架。
 
 **3. [BaseRecyclerViewAdapterHelper](https://github.com/CymChad/BaseRecyclerViewAdapterHelper)**
 a .`BaseQuickAdapter`的`setEmptyView`在下面情形下有crash的bug问题：当Adapter加入了HeaderView，然后调用`setEmptyView`，就会crash。具体处理参考:`UpcomingFragment`(一个即将来袭电影的Fragment)
-
+b .`BaseQuickAdapter`设置了 `setOnItemLongClickListener`后不能设置OnItemLongClickListener为null，这样会出现空指针异常，这与库中实现原理相关，具体参考源码。
 
 ## 遗留问题
 1. 加载图片
 glide 第一次加载图片有些显示不全，滑动到最低下再反过来就能看到完成的图片，但是picasso加载不会有这个问题，为什么呢？
-
+2. Kotlin assert 问题
 
 ### proguard-rules
 -keep class com.jackyang.android.support.injection.**{*;}

@@ -15,11 +15,14 @@ class HotMoviesPresent(context: Context, view: HotMovieContract.View) : HotMovie
     override fun queryHotMovies(cityId: Int) {
         mModule.queryUpComingMovies(mContext, cityId)
                 .applySchedulers()
-                .subscribe({ bean ->
-                    mView.onResponseHotMovies(bean)
-                }, { t ->
-                    mView.onError(t)
-                })
+                .subscribe(
+                        { bean ->
+                            mView.onResponseHotMovies(bean)
+                        },
+                        { t ->
+                            mView.onError(t)
+                        }
+                )
     }
 
     var mContext: Context = context

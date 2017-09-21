@@ -47,7 +47,6 @@ class UpcomingMovieAdapter(layout: Int, data: MutableList<UpcomingMovieBean.Movi
 //                    Picasso.with(activity).load(item?.image).placeholder(R.drawable.welcome).into(it)
                 }
 
-        //TODO("not draw why?")
         holder.getView<LineProgress>(R.id.lineProgress).let {
             it.setTotal(1000).smoothTo(if (item.wantedCount < 1000) item.wantedCount else 1000)
         }

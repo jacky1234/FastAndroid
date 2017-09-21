@@ -6,6 +6,7 @@ import android.widget.Toast
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import java.util.regex.Pattern
 
 /**
  * 2017/8/21.
@@ -25,6 +26,13 @@ fun Context.showToast(msg: String) {
 
 fun Context.color(resId: Int): Int {
     return ContextCompat.getColor(this, resId)
+}
+
+fun Pattern.testArray(array: Array<String>) {
+    for (s in array) {
+        println(s + "->" + matcher(s).matches())
+        assert(matcher(s).matches())
+    }
 }
 
 public inline fun <T> Iterable<T>.firstOrNull(predicate: (T) -> Boolean): T? {
