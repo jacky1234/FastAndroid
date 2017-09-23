@@ -41,6 +41,8 @@
         <item>Prefs-save</item>
         <item>Prefs-get</item>
         <item>Safe</item>
+        <item>sp_存储json</item>
+        <item>对象序列化_json</item>
     </array>
 
     <array name="kotlin">

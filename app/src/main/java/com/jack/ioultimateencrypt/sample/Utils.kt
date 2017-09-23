@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.support.v4.content.ContextCompat
 import android.widget.Toast
+import com.jackyang.android.support.utils.JsonUtils
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -43,6 +44,8 @@ fun Pattern.testArray(array: Array<String>) {
         println(s + "->" + matcher(s).matches())
     }
 }
+
+fun Any.toJson() = JsonUtils.toJSON(this)
 
 public inline fun <T> Iterable<T>.firstOrNull(predicate: (T) -> Boolean): T? {
     for (element in this) if (predicate(element)) return element

@@ -1,9 +1,12 @@
 package com.jack.ioultimateencrypt.sample.aop;
 
+import android.content.Context;
 import android.os.Looper;
 
+import com.blankj.utilcode.util.SPUtils;
 import com.jack.ioultimateencrypt.sample.module.Car;
 import com.jack.ioultimateencrypt.sample.module.Person;
+import com.jack.ioultimateencrypt.sample.mvp.model.bean.Location;
 import com.jack.test.logger.Log;
 import com.jackyang.android.aop.annotation.Async;
 import com.jackyang.android.aop.annotation.Cacheable;
@@ -11,6 +14,13 @@ import com.jackyang.android.aop.annotation.DebugTrace;
 import com.jackyang.android.aop.annotation.LogMethod;
 import com.jackyang.android.aop.annotation.Prefs;
 import com.jackyang.android.aop.annotation.Safe;
+import com.jackyang.android.support.utils.JsonUtils;
+import com.safframework.cache.Cache;
+
+import org.json.JSONException;
+
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * 2017/8/11.
@@ -41,7 +51,7 @@ public class AopShow {
         return p;
     }
 
-    @Cacheable(key = "car", expiry = 5)
+    @Cacheable(key = "car", expiry = -1)
     public static Car cacheable_save2() {
         Car car = new Car();
         car.setBrand("奔腾汽车");
@@ -80,8 +90,31 @@ public class AopShow {
     }
 
     @Safe
-    public static void safe_test(){
+    public static void safe_test() {
         String s = null;
         s.hashCode();
+    }
+
+    @DebugTrace
+    public static void writeXml(String json) {
+        SPUtils.getInstance("test").put("cities", json);
+    }
+
+    @DebugTrace
+    public static List<Location.City> readXml() {
+        final String json = SPUtils.getInstance("test").getString("cities");
+        return JsonUtils.getListFromJSON(json, Location.City.class);
+    }
+
+    @DebugTrace
+    @Cacheable(key = "cities")
+    public static List writeLists(List list) {
+        return list;
+    }
+
+    @DebugTrace
+    public static List<Location.City> getObj(Context context) throws JSONException {
+        final Location.City[] cities = (Location.City[]) Cache.get(context).getObject("cities");
+        return Arrays.asList(cities);
     }
 }
