@@ -11,7 +11,7 @@ import com.jack.ioultimateencrypt.sample.mvp.model.bean.MovieCataBean
  * @author  jackyang
  *
  */
-class MovieCataAdapter(layout: Int, data: MutableList<MovieCataBean>) : BaseQuickAdapter<MovieCataBean, BaseViewHolder>(layout, data) {
+class MovieCateAdapter(layout: Int, data: MutableList<MovieCataBean>) : BaseQuickAdapter<MovieCataBean, BaseViewHolder>(layout, data) {
 
     override fun convert(holder: BaseViewHolder?, item: MovieCataBean?) {
         holder?.setChecked(R.id.checkbox, item?.bChecked!!)

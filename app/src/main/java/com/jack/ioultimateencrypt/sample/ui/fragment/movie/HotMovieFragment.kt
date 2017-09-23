@@ -13,6 +13,7 @@ import com.jack.ioultimateencrypt.sample.mvp.model.bean.Location
 import com.jack.ioultimateencrypt.sample.mvp.present.HotMoviesPresent
 import com.jack.ioultimateencrypt.sample.rx.rxbus.EventConstant
 import com.jack.ioultimateencrypt.sample.rx.rxbus.RxBusManager
+import com.jack.ioultimateencrypt.sample.ui.MovieDetailActivity
 import com.jack.ioultimateencrypt.sample.ui.adapter.HotMovieAdapter
 import com.jack.ioultimateencrypt.sample.utils.SpUtils
 import kotlinx.android.synthetic.main.fragment_catelog.*
@@ -73,6 +74,9 @@ class HotMovieFragment : BaseFragment(), HotMovieContract.View, SwipeRefreshLayo
         mAdapter.setNotDoAnimationCount(3)
 
         recyclerView.adapter = mAdapter
+        mAdapter.setOnItemClickListener { adapter, view, position ->
+            MovieDetailActivity.launch(activity, mAdapter.getItem(position)?.id.toString())
+        }
 
         swipeRefreshLayout.setOnRefreshListener(this)
         swipeRefreshLayout.setColorSchemeColors(Color.rgb(47, 223, 189))

@@ -10,7 +10,7 @@ import com.jack.ioultimateencrypt.sample.mvp.model.bean.MovieDetailBean
  * @author  jackyang
  *
  */
-interface MovieDetailConstract {
+interface MovieDetailContract {
     interface Present : BasePresenter {
         fun queryMovieDetail(locationId: String, movieId: String)
     }

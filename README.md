@@ -37,6 +37,10 @@ apply plugin: 'com.hujiang.android-aspectjx'
 **3. [BaseRecyclerViewAdapterHelper](https://github.com/CymChad/BaseRecyclerViewAdapterHelper)**
 a .`BaseQuickAdapter`的`setEmptyView`在下面情形下有crash的bug问题：当Adapter加入了HeaderView，然后调用`setEmptyView`，就会crash。具体处理参考:`UpcomingFragment`(一个即将来袭电影的Fragment)
 b .`BaseQuickAdapter`设置了 `setOnItemLongClickListener`后不能设置OnItemLongClickListener为null，这样会出现空指针异常，这与库中实现原理相关，具体参考源码。
+c .多布局类型时，自定义类型的int值不能与 `BaseQuickAdapter`中 `HEADER_VIEW,LOADING_VIEW,FOOTER_VIEW,EMPTY_VIEW` 值有雷同，否则就会crash。
+
+**4. [SAF-Kotlin-log](https://github.com/fengzhizi715/SAF-Kotlin-log)**
+一个很方便基于Kotlin写的日志打印库,作者是 Tony Shen(现魔窗移动端负责)。并且基于Kotlin的特性扩写了很多功能，详细请移步：**LExt.kt**
 
 ## 遗留问题
 1. 加载图片

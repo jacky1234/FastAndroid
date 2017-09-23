@@ -13,7 +13,7 @@ import com.baidu.location.BDLocation
 import com.baidu.location.LocationClient
 import com.baidu.location.LocationClientOption
 import com.jack.ioultimateencrypt.sample.R
-import com.jack.ioultimateencrypt.sample.mvp.contract.MainConstract
+import com.jack.ioultimateencrypt.sample.mvp.contract.MainContract
 import com.jack.ioultimateencrypt.sample.mvp.model.bean.Location
 import com.jack.ioultimateencrypt.sample.mvp.present.MainPresent
 import com.jack.ioultimateencrypt.sample.rx.rxbus.EventConstant
@@ -29,10 +29,10 @@ import kotlinx.android.synthetic.main.activity_main.*
 import permissions.dispatcher.*
 
 @RuntimePermissions
-class MainActivity : AppCompatActivity(), MainConstract.View {
+class MainActivity : AppCompatActivity(), MainContract.View {
     private lateinit var mCatalogFragment: CatalogFragment
     private lateinit var mMovieFragment: MovieFragment
-    lateinit var mPresent: MainConstract.Present
+    lateinit var mPresent: MainContract.Present
     private var mLocationClient: LocationClient? = null
     lateinit var mkeyValueStore: KeyValueStore
     private var bExit = false

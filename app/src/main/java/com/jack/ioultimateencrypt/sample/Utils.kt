@@ -1,6 +1,8 @@
 package com.jack.ioultimateencrypt.sample
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.support.v4.content.ContextCompat
 import android.widget.Toast
 import io.reactivex.Observable
@@ -20,8 +22,16 @@ fun <T> Observable<T>.applySchedulers(): Observable<T> {
             observeOn(AndroidSchedulers.mainThread())
 }
 
+fun <T : Activity> Activity.startActivity(clazz: Class<T>) {
+    startActivity(Intent(this, clazz))
+}
+
 fun Context.showToast(msg: String) {
     Toast.makeText(applicationContext, msg, Toast.LENGTH_SHORT).show()
+}
+
+fun Context.showToast(resId: Int) {
+    Toast.makeText(applicationContext, applicationContext.getString(resId), Toast.LENGTH_SHORT).show()
 }
 
 fun Context.color(resId: Int): Int {
@@ -31,7 +41,6 @@ fun Context.color(resId: Int): Int {
 fun Pattern.testArray(array: Array<String>) {
     for (s in array) {
         println(s + "->" + matcher(s).matches())
-        assert(matcher(s).matches())
     }
 }
 

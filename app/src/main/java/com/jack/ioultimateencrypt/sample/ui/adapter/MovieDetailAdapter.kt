@@ -1,31 +1,64 @@
 package com.jack.ioultimateencrypt.sample.ui.adapter
 
+import android.os.Build
+import android.support.annotation.RequiresApi
 import android.support.v4.content.ContextCompat
-import android.widget.ImageView
+import android.widget.TextView
 import com.blankj.utilcode.util.SpanUtils
-import com.bumptech.glide.Glide
-import com.chad.library.adapter.base.BaseQuickAdapter
+import com.chad.library.adapter.base.BaseMultiItemQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.jack.ioultimateencrypt.sample.R
-import com.jack.ioultimateencrypt.sample.mvp.model.bean.UpcomingMovieBean
+import com.jack.ioultimateencrypt.sample.mvp.model.bean.MovieDetailBean
+import com.jack.ioultimateencrypt.sample.mvp.model.bean.MovieDetailBean.MovieDetailType
 
 /**
- * 2017/8/31.
+ * 2017/9/23.
  * github:[https://github.com/jacky1234]
  * @author  jackyang
  *
  */
-class MovieDetailAdapter(layout: Int, data: MutableList<UpcomingMovieBean.AttentionBean>) : BaseQuickAdapter<UpcomingMovieBean.AttentionBean, BaseViewHolder>(layout, data) {
+class MovieDetailAdapter(data: MutableList<MovieDetailType>?) : BaseMultiItemQuickAdapter<MovieDetailType, BaseViewHolder>(data) {
+    lateinit var mMovieDetailBean: MovieDetailBean  //request error ,需要用Adapter设置errorView
 
-    override fun convert(holder: BaseViewHolder, item: UpcomingMovieBean.AttentionBean) {
-        holder.setText(R.id.tv_date, String.format("%s月%s日"
-                , if (item.rMonth / 10 == 0) "0" + item.rMonth else item.rMonth.toString()
-                , if (item.rDay / 10 == 0) "0" + item.rDay else item.rDay.toString()))
-                .setText(R.id.tv_movie_name, item.title)
-                .setText(R.id.tv_want_see, SpanUtils()
-                        .append(String.format("%d", item.wantedCount)).setForegroundColor(ContextCompat.getColor(mContext, R.color.orange))
-                        .append(String.format("人想看", item.type)).setForegroundColor(ContextCompat.getColor(mContext, R.color.gray))
-                        .create())
-                .getView<ImageView>(R.id.iv_cover).let { Glide.with(mContext).load(item.image).placeholder(R.drawable.welcome).into(it) }
+    override fun setNewData(data: MutableList<MovieDetailType>?) {
+        if (mMovieDetailBean != null) {
+            super.setNewData(data)
+        } else throw IllegalStateException("you have not set mMovieDetailBean")
+    }
+
+    init {
+//        addItemType(MovieDetailBean.MovieDetailType.TYPE_STORY, R.layout.view_mv_detail_header)
+        addItemType(MovieDetailBean.MovieDetailType.TYPE_STORY, R.layout.view_mv_detail_story)
+        addItemType(MovieDetailBean.MovieDetailType.TYPE_STAFF, R.layout.view_mv_detail_story)
+        addItemType(MovieDetailBean.MovieDetailType.TYPE_RANK, R.layout.view_mv_detail_story)
+
+    }
+
+    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+    override fun convert(holder: BaseViewHolder, item: MovieDetailType) {
+        when (holder.itemViewType) {
+            MovieDetailType.TYPE_STORY -> {
+                holder.addOnClickListener(R.id.tv_story)
+                        .getView<TextView>(R.id.tv_story).let {
+                    it.text = SpanUtils()
+                            .append("剧情：").setForegroundColor(ContextCompat.getColor(mContext, R.color.orange))
+                            .append(mMovieDetailBean.content!!).setForegroundColor(R.color.black)
+                            .create()
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1 && it.lineCount > 2) {
+                        val mExpanded = mMovieDetailBean!!.isExpanded
+                        it.maxLines = if (mExpanded) Int.MAX_VALUE else 2
+                        it.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, 0,
+                                if (mExpanded) R.drawable.icon_arrow_64_gray_top else R.drawable.icon_arrow_64_gray_bottom)
+                    }
+                }
+
+            }
+            MovieDetailType.TYPE_STAFF -> {
+                holder.setVisible(R.id.tv_story, false)
+            }
+            MovieDetailType.TYPE_RANK -> {
+                holder.setVisible(R.id.tv_story, false)
+            }
+        }
     }
 }

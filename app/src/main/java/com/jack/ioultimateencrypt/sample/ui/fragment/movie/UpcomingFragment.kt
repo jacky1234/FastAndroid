@@ -20,8 +20,9 @@ import com.jack.ioultimateencrypt.sample.mvp.present.UpComingPresent
 import com.jack.ioultimateencrypt.sample.rx.rxbus.EventConstant
 import com.jack.ioultimateencrypt.sample.rx.rxbus.RxBusManager
 import com.jack.ioultimateencrypt.sample.showToast
-import com.jack.ioultimateencrypt.sample.ui.adapter.MovieCataAdapter
-import com.jack.ioultimateencrypt.sample.ui.adapter.MovieDetailAdapter
+import com.jack.ioultimateencrypt.sample.ui.MovieDetailActivity
+import com.jack.ioultimateencrypt.sample.ui.adapter.MovieAttentionAdapter
+import com.jack.ioultimateencrypt.sample.ui.adapter.MovieCateAdapter
 import com.jack.ioultimateencrypt.sample.ui.adapter.UpcomingMovieAdapter
 import com.jack.ioultimateencrypt.sample.ui.decoration.ItemHeaderDecoration
 import com.jack.ioultimateencrypt.sample.ui.decoration.SimpleDividerDecoration
@@ -71,8 +72,8 @@ class UpcomingFragment : BaseFragment(), UpComingContract.View, SwipeRefreshLayo
             cataLists.add(MovieCataBean(String.format("%d月大片", month + 2), month + 2, false, 2))
 
             mAdapter.setNewData(bean.moviecomings)
-            mMovieDetailAdapter?.setNewData(bean.attention)
-            mMovieCataAdapter?.setNewData(cataLists)
+            mMovieAttentionAdapter?.setNewData(bean.attention)
+            mMovieCateAdapter?.setNewData(cataLists)
         } else {
             mAdapter.emptyView = noDataView
         }
@@ -100,8 +101,8 @@ class UpcomingFragment : BaseFragment(), UpComingContract.View, SwipeRefreshLayo
     private var mCityId: Int? = null        //caution: 包装类型
     private val mUpcomingMovies = ArrayList<UpcomingMovieBean.MoviecomingsBean>()
     private lateinit var mAdapter: UpcomingMovieAdapter
-    private var mMovieCataAdapter: MovieCataAdapter? = null
-    private var mMovieDetailAdapter: MovieDetailAdapter? = null
+    private var mMovieCateAdapter: MovieCateAdapter? = null
+    private var mMovieAttentionAdapter: MovieAttentionAdapter? = null
     private val cataLists = ArrayList<MovieCataBean>()
     private val detailLists = ArrayList<UpcomingMovieBean.AttentionBean>()
     private var isAddHeader = false
@@ -123,7 +124,7 @@ class UpcomingFragment : BaseFragment(), UpComingContract.View, SwipeRefreshLayo
         mAdapter.openLoadAnimation(BaseQuickAdapter.ALPHAIN)
         mAdapter.setNotDoAnimationCount(3)
         mAdapter.setOnItemClickListener { adapter, view, position ->
-
+            MovieDetailActivity.launch(activity, mAdapter.getItem(position)?.id.toString())
         }
 
         mAdapter.setOnItemChildClickListener { adapter, view, position ->
@@ -207,10 +208,10 @@ class UpcomingFragment : BaseFragment(), UpComingContract.View, SwipeRefreshLayo
         simpleDividerDecoration.setNeedOffsetFooter(false)
         //catalog
         rvCatalog.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
-        mMovieCataAdapter = MovieCataAdapter(R.layout.item_movie_catalog, cataLists)
-        rvCatalog.adapter = mMovieCataAdapter
+        mMovieCateAdapter = MovieCateAdapter(R.layout.item_movie_catalog, cataLists)
+        rvCatalog.adapter = mMovieCateAdapter
         rvCatalog.addItemDecoration(simpleDividerDecoration)
-        mMovieCataAdapter?.setOnItemChildClickListener { adapter, _, position ->
+        mMovieCateAdapter?.setOnItemChildClickListener { adapter, _, position ->
             context.showToast(getString(R.string.mention_for_test))
             cataLists.forEachIndexed { index, any ->
                 any.bChecked = position == index
@@ -221,8 +222,8 @@ class UpcomingFragment : BaseFragment(), UpComingContract.View, SwipeRefreshLayo
 
         //detail
         rvDetail.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
-        mMovieDetailAdapter = MovieDetailAdapter(R.layout.item_movie_detail, detailLists)
-        rvDetail.adapter = mMovieDetailAdapter
+        mMovieAttentionAdapter = MovieAttentionAdapter(R.layout.item_movie_detail, detailLists)
+        rvDetail.adapter = mMovieAttentionAdapter
         rvDetail.addItemDecoration(simpleDividerDecoration)
     }
 }

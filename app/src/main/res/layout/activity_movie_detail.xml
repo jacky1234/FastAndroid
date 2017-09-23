@@ -5,13 +5,23 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <!--<android.support.v7.widget.RecyclerView-->
+    <!--android:id="@+id/recyclerView"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent">-->
+
+    <!--</android.support.v7.widget.RecyclerView>-->
+
+    <include
+        android:id="@+id/layout_title"
+        layout="@layout/layout_movie_detail_header"></include>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_below="@id/layout_title">
 
     </android.support.v7.widget.RecyclerView>
-
-    <include layout="@layout/layout_movie_detail_header"></include>
 
 </RelativeLayout>
