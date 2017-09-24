@@ -45,6 +45,11 @@ c .多布局类型时，自定义类型的int值不能与 `BaseQuickAdapter`中 
 
 一个很方便基于Kotlin写的日志打印库,作者是 Tony Shen(现魔窗移动端负责)。并且基于Kotlin的特性扩写了很多功能，详细请移步：**LExt.kt**
 
+## 开发记录
+**1. Sp存储Json和Object序列化方式性能的比较**
+Sp存储是存储的是json字符串要转化为具体的对象还需要json反序列化为对象，性能比Object直接序列化到文件差。测试文件为 `AopTestActivity`。更多详情请移至：[请不要滥用SharedPreference](https://zhuanlan.zhihu.com/p/22913991)
+
+
 ## 遗留问题
 1. 加载图片
 glide 第一次加载图片有些显示不全，滑动到最低下再反过来就能看到完成的图片，但是picasso加载不会有这个问题，为什么呢？

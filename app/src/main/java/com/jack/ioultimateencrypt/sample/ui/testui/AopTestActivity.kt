@@ -6,8 +6,6 @@ import com.blankj.utilcode.util.SPUtils
 import com.jack.ioultimateencrypt.sample.R
 import com.jack.ioultimateencrypt.sample.aop.AopShow
 import com.jack.ioultimateencrypt.sample.base.BaseTestActivity
-import com.jack.ioultimateencrypt.sample.module.Car
-import com.jack.ioultimateencrypt.sample.module.Person
 import com.jack.ioultimateencrypt.sample.toJson
 import com.jack.ioultimateencrypt.sample.utils.SpUtils
 import com.jack.test.logger.Log
@@ -44,11 +42,8 @@ class AopTestActivity : BaseTestActivity() {
             }
             2 -> {
                 val cache = Cache.get(this)
-                val p = cache.getObject("person") as Person
-                Log.d(TAG, "read person:" + p.toString())
-
-                val car = cache.getObject("car") as Car
-                Log.d(TAG, "read car:" + car.toString())
+                Log.d(TAG, "read person:" + cache.getObject("person")?.toString())
+                Log.d(TAG, "read car:" + cache.getObject("car")?.toString())
             }
             3 -> AopShow.debugTest()
             4 -> hookTest()

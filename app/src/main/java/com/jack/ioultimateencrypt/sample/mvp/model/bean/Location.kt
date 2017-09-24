@@ -8,7 +8,7 @@ import java.io.Serializable
  * @author  jackyang
  *
  */
-data class Location(var p: List<City>) :Serializable{
-    data class City(var count: Int, var id: Int, var n: String?, var pinyinFull: String?, var pinyinShort: String?)
+data class Location(var p: List<City>) {
+    data class City(var count: Int, var id: Int, var n: String?, var pinyinFull: String?, var pinyinShort: String?) : Serializable
 }
 

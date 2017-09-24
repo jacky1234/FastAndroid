@@ -19,7 +19,6 @@ import com.safframework.cache.Cache;
 
 import org.json.JSONException;
 
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -51,7 +50,7 @@ public class AopShow {
         return p;
     }
 
-    @Cacheable(key = "car", expiry = -1)
+    @Cacheable(key = "car", expiry = 5)
     public static Car cacheable_save2() {
         Car car = new Car();
         car.setBrand("奔腾汽车");
@@ -114,7 +113,6 @@ public class AopShow {
 
     @DebugTrace
     public static List<Location.City> getObj(Context context) throws JSONException {
-        final Location.City[] cities = (Location.City[]) Cache.get(context).getObject("cities");
-        return Arrays.asList(cities);
+        return (List<Location.City>) Cache.get(context).getObject("cities");
     }
 }
