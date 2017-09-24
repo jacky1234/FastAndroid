@@ -44,14 +44,13 @@ class MovieDetailAdapter(data: MutableList<MovieDetailType>?) : BaseMultiItemQui
                             .append("剧情：").setForegroundColor(ContextCompat.getColor(mContext, R.color.orange))
                             .append(mMovieDetailBean.content!!).setForegroundColor(R.color.black)
                             .create()
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1 && it.lineCount > 2) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
                         val mExpanded = mMovieDetailBean!!.isExpanded
                         it.maxLines = if (mExpanded) Int.MAX_VALUE else 2
                         it.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, 0,
                                 if (mExpanded) R.drawable.icon_arrow_64_gray_top else R.drawable.icon_arrow_64_gray_bottom)
                     }
                 }
-
             }
             MovieDetailType.TYPE_STAFF -> {
                 holder.setVisible(R.id.tv_story, false)

@@ -121,8 +121,7 @@ class UpcomingFragment : BaseFragment(), UpComingContract.View, SwipeRefreshLayo
         val mFloatingEffect = FloatingEffect(activity)
         mAdapter.inject(mFloatingEffect)        //inject floatingView to test
         recyclerView.adapter = mAdapter
-        mAdapter.openLoadAnimation(BaseQuickAdapter.ALPHAIN)
-        mAdapter.setNotDoAnimationCount(3)
+        mAdapter.openLoadAnimation(BaseQuickAdapter.SLIDEIN_LEFT)
         mAdapter.setOnItemClickListener { adapter, view, position ->
             MovieDetailActivity.launch(activity, mAdapter.getItem(position)?.id.toString())
         }

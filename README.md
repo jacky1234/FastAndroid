@@ -54,6 +54,7 @@ Sp存储是存储的是json字符串要转化为具体的对象还需要json反�
 1. 加载图片
 glide 第一次加载图片有些显示不全，滑动到最低下再反过来就能看到完成的图片，但是picasso加载不会有这个问题，为什么呢？
 2. Kotlin assert 问题
+3. RecyclerView中TextView的`getLineCount()`返回zero，及时通过 Stack Overflow 上的post Runnable任务任务获取也跟自己的预期不符。
 
 ### proguard-rules
 -keep class com.jackyang.android.support.injection.**{*;}
