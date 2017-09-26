@@ -57,7 +57,7 @@
         android:id="@+id/tv_mv_name_zh"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
+        android:layout_marginBottom="3dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@color/white"
         android:textSize="@dimen/abc_text_size_menu_material"
@@ -69,7 +69,7 @@
         android:id="@+id/tv_mv_name_en"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
+        android:layout_marginBottom="3dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/top"
@@ -82,7 +82,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="3dp"
         android:textColor="@color/black"
         android:textSize="14sp"
         app:layout_constraintLeft_toLeftOf="@+id/guideLine"
@@ -94,7 +94,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="3dp"
         android:textColor="@color/black"
         android:textSize="14sp"
         app:layout_constraintLeft_toLeftOf="@+id/guideLine"
@@ -106,7 +106,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="3dp"
         android:textColor="@color/black"
         android:textSize="14sp"
         app:layout_constraintLeft_toLeftOf="@+id/guideLine"
@@ -118,7 +118,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="3dp"
         android:textColor="@color/black"
         android:textSize="14sp"
         app:layout_constraintLeft_toLeftOf="@+id/guideLine"
@@ -130,20 +130,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="40dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="3dp"
         android:scaleType="centerCrop"
         android:src="@drawable/icon_mv_china"
         app:layout_constraintLeft_toLeftOf="@+id/guideLine"
         app:layout_constraintTop_toBottomOf="@+id/tv_commonSpecial"/>
-
-    <TextView
-        android:id="@+id/tv_bottom"
-        android:layout_width="wrap_content"
-        android:layout_height="10dp"
-        android:layout_marginTop="4dp"
-        app:layout_constraintLeft_toLeftOf="@+id/guideLine"
-        app:layout_constraintTop_toBottomOf="@+id/iv_china_mv"/>
-
 
     <ImageView
         android:id="@+id/iv_iMax"
@@ -164,7 +155,6 @@
         app:layout_constraintLeft_toRightOf="@id/iv_iMax"
         app:layout_constraintTop_toTopOf="@id/iv_iMax"/>
 
-
     <ImageView
         android:id="@+id/iv_cover"
         android:layout_width="0dp"
@@ -174,7 +164,7 @@
         android:background="@color/white"
         android:padding="2dp"
         android:scaleType="centerCrop"
-        app:layout_constraintBottom_toBottomOf="@id/iv_china_mv"
+        app:layout_constraintDimensionRatio="2:3"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="@id/guideLine"
         app:layout_constraintTop_toTopOf="@id/tv_mv_name_zh"/>
@@ -189,5 +179,12 @@
         app:layout_constraintRight_toRightOf="@+id/iv_cover"
         app:layout_constraintTop_toTopOf="@+id/iv_cover"/>
 
+    <TextView
+        android:id="@+id/tv_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="10dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintLeft_toLeftOf="@+id/guideLine"
+        app:layout_constraintTop_toBottomOf="@+id/iv_cover"/>
 
 </android.support.constraint.ConstraintLayout>

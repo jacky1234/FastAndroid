@@ -43,18 +43,25 @@ c .多布局类型时，自定义类型的int值不能与 `BaseQuickAdapter`中 
 d .刷新和加载更多功能：1. 比如我想onRefresh回调中，如果服务器返回hasMore为false，应该显示no More
 data.我们应该这样做：
 
-
-
 **4. [SAF-Kotlin-log](https://github.com/fengzhizi715/SAF-Kotlin-log)**
 
 一个很方便基于Kotlin写的日志打印库,作者是 Tony Shen(现魔窗移动端负责)。并且基于Kotlin的特性扩写了很多功能，详细请移步：**LExt.kt**
 
 ## 开发记录
 **a. Sp存储Json和Object序列化方式性能的比较**
+
 Sp存储是存储的是json字符串要转化为具体的对象还需要json反序列化为对象，性能比Object直接序列化到文件差。测试文件为 `AopTestActivity`。更多详情请移至：[请不要滥用SharedPreference](https://zhuanlan.zhihu.com/p/22913991)
 
-***b. ConstraintLayout问题*
+**b. ConstraintLayout**
+
+利用约束布局减少层级关系，详见 `view_mv_detail_header.xml`.参考：
+* [ConstraintLayout 学习笔记](http://www.jianshu.com/p/16e95b6b5e38)
+* [动态图解&实例 ConstraintLayout Chain](http://www.jianshu.com/p/beb9f7157209)
+* [ConstraintLayout教程](http://www.jianshu.com/p/493fbc223949)
+* [为什么ConstraintLayout代替其他布局?](http://www.jianshu.com/p/32a0a6e0a98a)
 1. `match_parent is not supported`:match_parent is not allowed. But you can actually set width and height to 0dp and set either top and bottom or left and right constraints to "parent".
+
+
 
 ## 遗留问题
 1. 加载图片
