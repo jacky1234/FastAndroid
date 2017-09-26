@@ -12,39 +12,172 @@
         android:layout_height="0dp"
         android:background="@color/light_gray"
         android:visibility="visible"
-        app:layout_constraintDimensionRatio="24:6.5"
+        app:layout_constraintDimensionRatio="24:7"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
     </FrameLayout>
-
 
     <FrameLayout
         android:id="@+id/bottom"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/white"
-        app:layout_constraintDimensionRatio="24:7.5"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_bottom"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/top">
 
     </FrameLayout>
 
+
+    <TextView
+        android:id="@+id/tv_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@android:color/holo_green_dark"
+        android:gravity="top"
+        android:padding="12dp"
+        android:textColor="@color/white"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_mv_name_en"
+        tools:text="7.7"/>
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideLine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.35"/>
+
+    <TextView
+        android:id="@+id/tv_mv_name_zh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/white"
+        android:textSize="@dimen/abc_text_size_menu_material"
+        app:layout_constraintBottom_toTopOf="@+id/tv_mv_name_en"
+        app:layout_constraintLeft_toLeftOf="@+id/guideLine"
+        tools:text="猩球崛起3:终极之战"/>
+
+    <TextView
+        android:id="@+id/tv_mv_name_en"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/top"
+        app:layout_constraintLeft_toLeftOf="@+id/guideLine"
+        tools:text="猩球崛起3:终极之战"/>
+
+
+    <TextView
+        android:id="@+id/tv_duration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="4dp"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toLeftOf="@+id/guideLine"
+        app:layout_constraintTop_toBottomOf="@+id/top"
+        tools:text="140分钟"/>
+
+    <TextView
+        android:id="@+id/tv_classify"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="4dp"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toLeftOf="@+id/guideLine"
+        app:layout_constraintTop_toBottomOf="@+id/tv_duration"
+        tools:text="动作/冒险/科幻"/>
+
+    <TextView
+        android:id="@+id/tv_time_show"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="4dp"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toLeftOf="@+id/guideLine"
+        app:layout_constraintTop_toBottomOf="@+id/tv_classify"
+        tools:text="2017年"/>
+
+    <TextView
+        android:id="@+id/tv_commonSpecial"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="4dp"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toLeftOf="@+id/guideLine"
+        app:layout_constraintTop_toBottomOf="@+id/tv_time_show"
+        tools:text="123"/>
+
+    <ImageView
+        android:id="@+id/iv_china_mv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:layout_marginTop="4dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/icon_mv_china"
+        app:layout_constraintLeft_toLeftOf="@+id/guideLine"
+        app:layout_constraintTop_toBottomOf="@+id/tv_commonSpecial"/>
+
+    <TextView
+        android:id="@+id/tv_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="10dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintLeft_toLeftOf="@+id/guideLine"
+        app:layout_constraintTop_toBottomOf="@+id/iv_china_mv"/>
+
+
+    <ImageView
+        android:id="@+id/iv_iMax"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4dp"
+        android:src="@drawable/icon_imax_3d"
+        app:layout_constraintLeft_toRightOf="@id/iv_china_mv"
+        app:layout_constraintTop_toTopOf="@id/iv_china_mv"/>
+
+    <ImageView
+        android:id="@+id/iv_3d"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/icon_3d"
+        app:layout_constraintLeft_toRightOf="@id/iv_iMax"
+        app:layout_constraintTop_toTopOf="@id/iv_iMax"/>
+
+
     <ImageView
         android:id="@+id/iv_cover"
-        android:layout_width="100dp"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="10dp"
         android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:background="@color/white"
         android:padding="2dp"
         android:scaleType="centerCrop"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintDimensionRatio="2:3"
-        app:layout_constraintLeft_toLeftOf="parent"/>
+        app:layout_constraintBottom_toBottomOf="@id/iv_china_mv"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="@id/guideLine"
+        app:layout_constraintTop_toTopOf="@id/tv_mv_name_zh"/>
 
     <ImageView
         android:id="@+id/iv_play"
@@ -55,155 +188,6 @@
         app:layout_constraintLeft_toLeftOf="@+id/iv_cover"
         app:layout_constraintRight_toRightOf="@+id/iv_cover"
         app:layout_constraintTop_toTopOf="@+id/iv_cover"/>
-
-    <TextView
-        android:id="@+id/tv_mv_name_zh"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="0dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="0dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="@color/white"
-        android:textSize="@dimen/abc_text_size_menu_material"
-        app:layout_constraintLeft_toRightOf="@+id/iv_cover"
-        app:layout_constraintTop_toTopOf="@+id/iv_cover"
-        tools:text="猩球崛起3:终极之战"/>
-
-    <TextView
-        android:id="@+id/tv_mv_name_en"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="4dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Small"
-        android:textColor="@color/white"
-        app:layout_constraintLeft_toRightOf="@+id/iv_cover"
-        app:layout_constraintTop_toBottomOf="@+id/tv_mv_name_zh"
-        tools:text="猩球崛起3:终极之战"/>
-
-
-    <TextView
-        android:id="@+id/tv_score"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="10dp"
-        android:background="@android:color/holo_green_dark"
-        android:gravity="top"
-        android:padding="12dp"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="@+id/bottom"
-        app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/top"
-        app:layout_constraintVertical_bias="0.5"
-        tools:text="7.7"/>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="@+id/iv_cover"
-        app:layout_constraintLeft_toLeftOf="@+id/tv_mv_name_en"
-        app:layout_constraintTop_toTopOf="@+id/bottom">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_weight="1">
-
-                <TextView
-                    android:id="@+id/tv_duration"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:textColor="@color/black"
-                    android:textSize="14sp"
-                    tools:text="140分钟"/>
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_weight="1">
-
-                <TextView
-                    android:id="@+id/tv_classify"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:textColor="@color/black"
-                    android:textSize="14sp"
-                    tools:text="动作/冒险/科幻"/>
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_weight="1">
-
-                <TextView
-                    android:id="@+id/tv_time_show"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:textColor="@color/black"
-                    tools:text="2017年09月15日中国上映"/>
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_weight="1">
-
-                <TextView
-                    android:id="@+id/tv_commonSpecial"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:textColor="@color/black"
-                    tools:text="123"/>
-            </RelativeLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/iv_china_mv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:scaleType="centerCrop"
-                android:src="@drawable/icon_mv_china"/>
-
-
-            <ImageView
-                android:id="@+id/iv_iMax"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="4dp"
-                android:src="@drawable/icon_imax_3d"/>
-
-            <ImageView
-                android:id="@+id/iv_3d"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="4dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/icon_3d"/>
-
-        </LinearLayout>
-    </LinearLayout>
 
 
 </android.support.constraint.ConstraintLayout>

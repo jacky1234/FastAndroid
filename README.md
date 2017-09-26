@@ -1,5 +1,5 @@
 ## 基本
-基于kotlin的mvp写的一款生活常用app。封装了很多常用的功能，以及开发中比较常用框架，对开发中对问题进行记录和深入对分析。
+基于kotlin的mvp写的一款生活常用app。封装了很多常用的功能，以及开发中比较常用框架，对开发注意点和使用第三方框架问题和注意点进行记录和深入分析。
 
 ## 特性
 - 一键注入依赖。
@@ -40,15 +40,21 @@ apply plugin: 'com.hujiang.android-aspectjx'
 a .`BaseQuickAdapter`的`setEmptyView`在下面情形下有crash的bug问题：当Adapter加入了HeaderView，然后调用`setEmptyView`，就会crash。具体处理参考:`UpcomingFragment`(一个即将来袭电影的Fragment)
 b .`BaseQuickAdapter`设置了 `setOnItemLongClickListener`后不能设置OnItemLongClickListener为null，这样会出现空指针异常，这与库中实现原理相关，具体参考源码。
 c .多布局类型时，自定义类型的int值不能与 `BaseQuickAdapter`中 `HEADER_VIEW,LOADING_VIEW,FOOTER_VIEW,EMPTY_VIEW` 值有雷同，否则就会crash。
+d .刷新和加载更多功能：1. 比如我想onRefresh回调中，如果服务器返回hasMore为false，应该显示no More
+data.我们应该这样做：
+
+
 
 **4. [SAF-Kotlin-log](https://github.com/fengzhizi715/SAF-Kotlin-log)**
 
 一个很方便基于Kotlin写的日志打印库,作者是 Tony Shen(现魔窗移动端负责)。并且基于Kotlin的特性扩写了很多功能，详细请移步：**LExt.kt**
 
 ## 开发记录
-**1. Sp存储Json和Object序列化方式性能的比较**
+**a. Sp存储Json和Object序列化方式性能的比较**
 Sp存储是存储的是json字符串要转化为具体的对象还需要json反序列化为对象，性能比Object直接序列化到文件差。测试文件为 `AopTestActivity`。更多详情请移至：[请不要滥用SharedPreference](https://zhuanlan.zhihu.com/p/22913991)
 
+***b. ConstraintLayout问题*
+1. `match_parent is not supported`:match_parent is not allowed. But you can actually set width and height to 0dp and set either top and bottom or left and right constraints to "parent".
 
 ## 遗留问题
 1. 加载图片
