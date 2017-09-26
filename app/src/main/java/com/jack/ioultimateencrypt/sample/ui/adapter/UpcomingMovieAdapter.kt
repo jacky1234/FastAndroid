@@ -7,6 +7,7 @@ import com.bumptech.glide.Glide
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.jack.ioultimateencrypt.sample.R
+import com.jack.ioultimateencrypt.sample.color
 import com.jack.ioultimateencrypt.sample.effect.FloatingEffect
 import com.jack.ioultimateencrypt.sample.mvp.model.bean.UpcomingMovieBean
 import com.jack.ioultimateencrypt.sample.ui.widget.LineProgress
@@ -29,7 +30,7 @@ class UpcomingMovieAdapter(layout: Int, data: MutableList<UpcomingMovieBean.Movi
         holder.setText(R.id.date_tv, String.format("%d月%d日", item.rMonth, item.rDay))
                 .setText(R.id.tv_movie_name, item.title)
                 .setText(R.id.tv_want_see, SpanUtils()
-                        .append(String.format("%d", item.wantedCount)).setForegroundColor(ContextCompat.getColor(mContext, R.color.orange))
+                        .append(String.format("%d", item.wantedCount)).setForegroundColor(mContext.color(R.color.orange))
                         .append("人想看").setForegroundColor(ContextCompat.getColor(mContext, R.color.gray))
                         .append(if (item.type == null) "" else String.format("-%s", item.type)).setForegroundColor(ContextCompat.getColor(mContext, R.color.gray))
                         .create())

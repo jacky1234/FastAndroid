@@ -95,7 +95,6 @@ class RecyclerViewHelper private constructor(var mRecyclerView: RecyclerView) {
             } else mHeader = header
 
             mHeader!!.IsParallaxHeader(true)
-
             return this
         }
 

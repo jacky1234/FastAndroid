@@ -13,7 +13,7 @@ import android.view.View;
  * github:[https://github.com/jacky1234]
  *
  * @author jackyang
- * 简单的decor绘制
+ *         简单的decor绘制
  */
 
 public class SimpleDividerDecoration extends RecyclerView.ItemDecoration {
@@ -22,7 +22,7 @@ public class SimpleDividerDecoration extends RecyclerView.ItemDecoration {
     private Paint dividerPaint;
     private int orientation;
 
-    private boolean needOffsetHeader = true;
+    private boolean needOffsetHeader = false;
     private boolean needOffsetFooter = false;
 
     public void setNeedOffsetHeader(boolean needOffsetHeader) {

@@ -86,7 +86,7 @@ class UpcomingFragment : BaseFragment(), UpComingContract.View, SwipeRefreshLayo
         }
         mAdapter.emptyView = errorView
         swipeRefreshLayout?.isRefreshing = false
-        swipeRefreshLayout.isEnabled = true
+        swipeRefreshLayout?.isEnabled = true
 
         if (mAdapter.isLoadMoreEnable) {
             mAdapter.setEnableLoadMore(false)   //不需要加载更多

@@ -46,6 +46,7 @@
         <activity android:name=".ui.testui.KotlinTestActivity" />
         <activity android:name=".ui.testui.QueueTestActivity"></activity>
         <activity android:name=".ui.testui.LineProgressTestActivity"></activity>
+        <activity android:name=".ui.testui.ConstraintLayoutTestActivity"></activity>
 
         <activity android:name=".ui.MovieDetailActivity"></activity>
 
