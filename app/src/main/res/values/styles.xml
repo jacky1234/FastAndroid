@@ -11,6 +11,10 @@
         <item name="windowActionBar">false</item>
     </style>
 
+    <style name="MyAppTheme" parent="AppTheme">
+        <item name="android:screenOrientation">portrait</item>
+    </style>
+
     <style name="TextButtonToolBar">
         <item name="android:background">?attr/selectableItemBackground</item>
         <item name="android:paddingLeft">10dp</item>

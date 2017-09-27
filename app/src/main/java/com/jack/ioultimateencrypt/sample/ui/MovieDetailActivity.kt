@@ -63,10 +63,10 @@ class MovieDetailActivity : BaseActiivty(), MovieDetailContract.View {
 
         if (!TextUtils.isEmpty(movieDetailBean.commonSpecial)) {
             (mAdapter.headerLayout.findViewById(R.id.tv_commonSpecial) as TextView).text = SpanUtils()
-                    .append("''").setFontSize(16, true).setForegroundColor(color(R.color.orange))
+                    .appendImage(R.drawable.icon_comma_orange_64)
                     .append(movieDetailBean.commonSpecial!!).setFontSize(12, true).setForegroundColor(color(R.color.orange))
                     .create()
-        } else mAdapter.headerLayout.findViewById(R.id.tv_commonSpecial).visibility = View.GONE
+        } else mAdapter.headerLayout.findViewById(R.id.tv_commonSpecial).visibility = View.INVISIBLE
 
         mAdapter.headerLayout.findViewById(R.id.iv_iMax).visibility = if (movieDetailBean.isIMAX) View.VISIBLE else View.OVER_SCROLL_NEVER
         mAdapter.headerLayout.findViewById(R.id.iv_3d).visibility = if (movieDetailBean.is3D) View.VISIBLE else View.OVER_SCROLL_NEVER
@@ -77,7 +77,7 @@ class MovieDetailActivity : BaseActiivty(), MovieDetailContract.View {
                     .append(rating.substring(0, 2)).setFontSize(16, true).setBold()
                     .append(rating.subSequence(2, 3)).setFontSize(12, true).setBold()
                     .create()
-        } else mAdapter.headerLayout.findViewById(R.id.tv_score).visibility = View.GONE
+        } else mAdapter.headerLayout.findViewById(R.id.tv_score).visibility = View.INVISIBLE
     }
 
     override fun onError(t: Throwable) {

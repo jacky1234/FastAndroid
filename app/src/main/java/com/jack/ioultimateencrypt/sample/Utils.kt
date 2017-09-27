@@ -23,7 +23,7 @@ fun <T> Observable<T>.applySchedulers(): Observable<T> {
             observeOn(AndroidSchedulers.mainThread())
 }
 
-fun <T : Activity> Activity.startActivity(clazz: Class<T>) {
+fun <T : Activity> Activity.start(clazz: Class<T>) {
     startActivity(Intent(this, clazz))
 }
 
@@ -47,7 +47,3 @@ fun Pattern.testArray(array: Array<String>) {
 
 fun Any.toJson() = JsonUtils.toJSON(this)
 
-public inline fun <T> Iterable<T>.firstOrNull(predicate: (T) -> Boolean): T? {
-    for (element in this) if (predicate(element)) return element
-    return null
-}
