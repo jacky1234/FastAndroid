@@ -38,6 +38,13 @@ public class ExampleUnitTest {
         Utils.P("deser:" + list.toString());
     }
 
+    @Test
+    public void subString_test(){
+        String s = "/abs";
+        s = s.substring(1,s.length());
+        Utils.P(s);
+    }
+
 
 }
 
